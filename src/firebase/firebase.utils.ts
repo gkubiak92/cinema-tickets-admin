@@ -15,3 +15,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
+
+export const convertFirestoreCollectionToArray = (collection: any) => {
+  const collectionArray = collection.docs.map((doc: any) => {
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
+  });
+
+  return collectionArray;
+};

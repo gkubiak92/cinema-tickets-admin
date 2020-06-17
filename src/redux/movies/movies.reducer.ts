@@ -11,7 +11,7 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
     case MoviesActionNames.FETCH_MOVIES_START:
       return {
         ...state,
-        isFetchin: true,
+        isFetching: true,
       };
     default:
       return {

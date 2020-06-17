@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import Menu from "./components/Menu";
-import MoviesList from "./views/movies-list";
-import Dashboard from "./views/dashboard";
-import HallsList from "./views/halls-list";
+import Menu from "components/Menu";
+import MoviesList from "views/movies-list";
+import Dashboard from "views/dashboard";
+import HallsList from "views/halls-list";
 
 function App() {
   return (

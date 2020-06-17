@@ -6,17 +6,15 @@ export const MoviesActionNames = {
 
 interface IFetchMoviesStartAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_START;
-  payload: any;
 }
 
 interface IFetchMoviesSuccessAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_SUCCESS;
-  payload: any;
 }
 
 interface IFetchMoviesFailureAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_FAILURE;
-  payload: any;
+  payload: string;
 }
 
 export type MoviesActionTypes =
