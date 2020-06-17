@@ -1,3 +1,5 @@
+import { IMovie } from "api/types";
+
 export const MoviesActionNames = {
   FETCH_MOVIES_START: "FETCH_MOVIES_START",
   FETCH_MOVIES_SUCCESS: "FETCH_MOVIES_SUCCESS",
@@ -6,10 +8,12 @@ export const MoviesActionNames = {
 
 interface IFetchMoviesStartAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_START;
+  payload?: any;
 }
 
 interface IFetchMoviesSuccessAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_SUCCESS;
+  payload: IMovie[];
 }
 
 interface IFetchMoviesFailureAction {
@@ -20,10 +24,10 @@ interface IFetchMoviesFailureAction {
 export type MoviesActionTypes =
   | IFetchMoviesStartAction
   | IFetchMoviesSuccessAction
-  | IFetchMoviesSuccessAction;
+  | IFetchMoviesFailureAction;
 
 export interface IMoviesState {
-  movies: {};
+  movies: IMovie[];
   isFetching: boolean;
   error: string;
 }

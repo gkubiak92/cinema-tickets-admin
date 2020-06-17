@@ -5,7 +5,7 @@ export const fetchMoviesStartAction = () => ({
   payload: null,
 });
 
-export const fetchMoviesSuccessAction = (movies: any) => ({
+export const fetchMoviesSuccessAction = (movies: Object[]) => ({
   type: MoviesActionNames.FETCH_MOVIES_SUCCESS,
   payload: movies,
 });

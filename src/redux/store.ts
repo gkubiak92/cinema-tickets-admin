@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, Middleware } from "redux";
 import logger from "redux-logger";
 import persistedRootReducer from "./root.reducer";
-import { persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./root.saga";
+import { persistStore } from "redux-persist";
 
 const sagaMiddleware = createSagaMiddleware();
 

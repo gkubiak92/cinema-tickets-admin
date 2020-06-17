@@ -3,7 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import moviesReducer from "./movies/movies.reducer";
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
   movies: moviesReducer,
 });
 

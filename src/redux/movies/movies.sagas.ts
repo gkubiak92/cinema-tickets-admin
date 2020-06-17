@@ -1,6 +1,9 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import { MoviesActionNames } from "./types";
-import { fetchMoviesFailureAction } from "./movies.actions";
+import {
+  fetchMoviesFailureAction,
+  fetchMoviesSuccessAction,
+} from "./movies.actions";
 import {
   firestore,
   convertFirestoreCollectionToArray,
@@ -16,6 +19,7 @@ function* fetchMoviesAsync() {
     const moviesSnapshot = yield moviesCollectionRef.get();
     const moviesArray = convertFirestoreCollectionToArray(moviesSnapshot);
     console.log(moviesArray);
+    yield put(fetchMoviesSuccessAction(moviesArray));
   } catch (error) {
     yield put(fetchMoviesFailureAction(error));
   }

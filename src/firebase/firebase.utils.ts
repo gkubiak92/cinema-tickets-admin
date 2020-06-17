@@ -16,6 +16,9 @@ firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
 
+/* Util method which converts firestore docs collection from snapshot
+ *  to array of flatten Objects with added doc id as id field
+ */
 export const convertFirestoreCollectionToArray = (collection: any) => {
   const collectionArray = collection.docs.map((doc: any) => {
     return {
