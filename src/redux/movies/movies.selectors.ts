@@ -7,3 +7,8 @@ export const selectAllMovies = createSelector(
   selectMovies,
   ({ movies }) => movies
 );
+
+export const selectMovie = (id: string) =>
+  createSelector(selectMovies, ({ movies }) =>
+    movies.find((movie) => movie.id === id)
+  );

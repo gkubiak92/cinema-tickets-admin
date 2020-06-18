@@ -18,7 +18,7 @@ import { Add } from "@material-ui/icons";
 import { selectAllMovies } from "redux/movies/movies.selectors";
 import { IRootState } from "redux/types";
 import { useRootStyles } from "App.styles";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useStyles } from "./styles";
 
 const MoviesList = ({
@@ -31,6 +31,7 @@ const MoviesList = ({
 
   const rootClasses = useRootStyles();
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <>
@@ -40,7 +41,7 @@ const MoviesList = ({
         color="primary"
         startIcon={<Add />}
         component={Link}
-        to="/add-movie"
+        to="/edit-movie"
       >
         Add
       </Button>
@@ -57,7 +58,12 @@ const MoviesList = ({
           </TableHead>
           <TableBody>
             {movies.map((movie) => (
-              <TableRow key={movie.id}>
+              <TableRow
+                key={movie.id}
+                onClick={() => {
+                  history.push(`/edit-movie/${movie.id}`);
+                }}
+              >
                 <TableCell>
                   <Avatar
                     src={movie.thumbnailUrl}

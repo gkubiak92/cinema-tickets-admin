@@ -1,4 +1,16 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, createMuiTheme } from "@material-ui/core";
+
+export const theme = createMuiTheme({
+  overrides: {
+    MuiTableRow: {
+      root: {
+        backgroundColor: "",
+        "&:hover": { backgroundColor: "#eee" },
+        cursor: "pointer",
+      },
+    },
+  },
+});
 
 export const useRootStyles = makeStyles((theme) => ({
   root: {
@@ -7,5 +19,8 @@ export const useRootStyles = makeStyles((theme) => ({
   },
   crudButton: {
     marginBottom: 10,
+  },
+  tableRow: {
+    cursor: "pointer",
   },
 }));

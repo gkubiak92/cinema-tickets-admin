@@ -7,3 +7,11 @@ export interface IMoviesListMappedDispatch {
 export interface IMoviesListMappedState {
   movies: IMovie[];
 }
+
+export interface IEditMovieProps {
+  id: string;
+}
+
+export interface IEditMovieMappedState {
+  movie: IMovie | undefined;
+}

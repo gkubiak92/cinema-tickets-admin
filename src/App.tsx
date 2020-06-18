@@ -6,27 +6,31 @@ import MoviesList from "views/Movies";
 import Dashboard from "views/Dashboard";
 import HallsList from "views/Halls";
 import AppHeader from "components/AppHeader";
-import { useRootStyles } from "App.styles";
+import { useRootStyles, theme } from "App.styles";
 import ContentContainer from "components/ContentContainer";
 import Toolbar from "@material-ui/core/Toolbar";
-import AddMovie from "views/Movies/AddMovie";
+import EditMovie from "views/Movies/EditMovie";
+import { ThemeProvider } from "@material-ui/core";
 
 function App() {
   const classes = useRootStyles();
   return (
-    <div className={classes.root}>
-      <AppHeader />
-      <Menu />
-      <Toolbar />
-      <ContentContainer>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/movies" component={MoviesList} />
-          <Route exact path="/halls" component={HallsList} />
-          <Route exact path="/add-movie" component={AddMovie} />
-        </Switch>
-      </ContentContainer>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <AppHeader />
+        <Menu />
+        <Toolbar />
+        <ContentContainer>
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/movies" component={MoviesList} />
+            <Route exact path="/halls" component={HallsList} />
+            <Route exact path="/edit-movie" component={EditMovie} />
+            <Route exact path="/edit-movie/:id" component={EditMovie} />
+          </Switch>
+        </ContentContainer>
+      </div>
+    </ThemeProvider>
   );
 }
 
