@@ -3,7 +3,7 @@ import { useStyles } from "./styles";
 
 const ContentContainer: React.FC = ({ children }) => {
   const classes = useStyles();
-  return <div className={classes.content}>{children}</div>;
+  return <main className={classes.content}>{children}</main>;
 };
 
 export default ContentContainer;

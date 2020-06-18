@@ -2,13 +2,14 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Menu from "components/Menu";
-import MoviesList from "views/movies-list";
-import Dashboard from "views/dashboard";
-import HallsList from "views/halls-list";
+import MoviesList from "views/Movies";
+import Dashboard from "views/Dashboard";
+import HallsList from "views/Halls";
 import AppHeader from "components/AppHeader";
 import { useStyles } from "App.styles";
 import ContentContainer from "components/ContentContainer";
 import Toolbar from "@material-ui/core/Toolbar";
+import AddMovie from "views/Movies/AddMovie";
 
 function App() {
   const classes = useStyles();
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/movies" component={MoviesList} />
           <Route exact path="/halls" component={HallsList} />
+          <Route exact path="/add-movie" component={AddMovie} />
         </Switch>
       </ContentContainer>
     </div>
