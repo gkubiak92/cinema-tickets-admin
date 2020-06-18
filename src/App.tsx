@@ -6,13 +6,13 @@ import MoviesList from "views/Movies";
 import Dashboard from "views/Dashboard";
 import HallsList from "views/Halls";
 import AppHeader from "components/AppHeader";
-import { useStyles } from "App.styles";
+import { useRootStyles } from "App.styles";
 import ContentContainer from "components/ContentContainer";
 import Toolbar from "@material-ui/core/Toolbar";
 import AddMovie from "views/Movies/AddMovie";
 
 function App() {
-  const classes = useStyles();
+  const classes = useRootStyles();
   return (
     <div className={classes.root}>
       <AppHeader />

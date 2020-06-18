@@ -12,12 +12,14 @@ import {
   TableCell,
   TableBody,
   Button,
+  Avatar,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { selectAllMovies } from "redux/movies/movies.selectors";
 import { IRootState } from "redux/types";
-import { useStyles } from "App.styles";
+import { useRootStyles } from "App.styles";
 import { Link } from "react-router-dom";
+import { useStyles } from "./styles";
 
 const MoviesList = ({
   fetchMoviesStart,
@@ -27,12 +29,13 @@ const MoviesList = ({
     fetchMoviesStart();
   }, [fetchMoviesStart]);
 
+  const rootClasses = useRootStyles();
   const classes = useStyles();
 
   return (
     <>
       <Button
-        className={classes.crudButton}
+        className={rootClasses.crudButton}
         variant="contained"
         color="primary"
         startIcon={<Add />}
@@ -45,6 +48,7 @@ const MoviesList = ({
         <Table aria-label="Movies list">
           <TableHead>
             <TableRow>
+              <TableCell></TableCell>
               <TableCell>Id</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Director</TableCell>
@@ -54,6 +58,13 @@ const MoviesList = ({
           <TableBody>
             {movies.map((movie) => (
               <TableRow key={movie.id}>
+                <TableCell>
+                  <Avatar
+                    src={movie.thumbnailUrl}
+                    className={classes.avatar}
+                    variant="square"
+                  />
+                </TableCell>
                 <TableCell>{movie.id}</TableCell>
                 <TableCell>{movie.title}</TableCell>
                 <TableCell>{movie.director}</TableCell>

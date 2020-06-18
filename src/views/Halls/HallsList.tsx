@@ -17,7 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import { IRootState } from "redux/types";
 import { selectAllHalls } from "redux/halls/halls.selectors";
-import { useStyles } from "App.styles";
+import { useRootStyles } from "App.styles";
 
 const HallsList = ({
   fetchHallsStart,
@@ -27,12 +27,12 @@ const HallsList = ({
     fetchHallsStart();
   }, [fetchHallsStart]);
 
-  const classes = useStyles();
+  const rootClasses = useRootStyles();
 
   return (
     <>
       <Button
-        className={classes.crudButton}
+        className={rootClasses.crudButton}
         variant="contained"
         color="primary"
         startIcon={<Add />}
