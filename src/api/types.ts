@@ -22,3 +22,16 @@ export interface IScreeningDate {
   date: Object;
   hallId: string;
 }
+
+export interface IHall {
+  name: string;
+  id: string;
+  seatArrangement: {
+    [key: string]: ISeat[];
+  };
+}
+
+export interface ISeat {
+  disabled: boolean;
+  isAvailable: boolean;
+}

@@ -16,7 +16,7 @@ import {
 import { Add } from "@material-ui/icons";
 import { selectAllMovies } from "redux/movies/movies.selectors";
 import { IRootState } from "redux/types";
-import { useStyles } from "./styles";
+import { useStyles } from "App.styles";
 import { Link } from "react-router-dom";
 
 const MoviesList = ({
@@ -32,7 +32,7 @@ const MoviesList = ({
   return (
     <>
       <Button
-        className={classes.button}
+        className={classes.crudButton}
         variant="contained"
         color="primary"
         startIcon={<Add />}

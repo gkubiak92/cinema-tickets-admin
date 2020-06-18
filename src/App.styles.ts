@@ -5,4 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  crudButton: {
+    marginBottom: 10,
+  },
 }));
