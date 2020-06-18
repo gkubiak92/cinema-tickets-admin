@@ -5,16 +5,25 @@ import Menu from "components/Menu";
 import MoviesList from "views/movies-list";
 import Dashboard from "views/dashboard";
 import HallsList from "views/halls-list";
+import AppHeader from "components/AppHeader";
+import { useStyles } from "App.styles";
+import ContentContainer from "components/ContentContainer";
+import Toolbar from "@material-ui/core/Toolbar";
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
+    <div className={classes.root}>
+      <AppHeader />
       <Menu />
-      <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route exact path="/movies" component={MoviesList} />
-        <Route exact path="/halls" component={HallsList} />
-      </Switch>
+      <Toolbar />
+      <ContentContainer>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/movies" component={MoviesList} />
+          <Route exact path="/halls" component={HallsList} />
+        </Switch>
+      </ContentContainer>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const drawerWidth = 240;
+export const drawerWidth = 240;
 
 export const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -9,5 +9,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+  },
+  drawerContainer: {
+    overflow: "auto",
   },
 }));
