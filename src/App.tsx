@@ -2,14 +2,14 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Menu from "components/Menu";
-import MoviesList from "views/Movies";
+import MoviesList from "views/Movies/List";
 import Dashboard from "views/Dashboard";
-import HallsList from "views/Halls";
+import HallsList from "views/Halls/List";
 import AppHeader from "components/AppHeader";
 import { useRootStyles, theme } from "App.styles";
 import ContentContainer from "components/ContentContainer";
 import Toolbar from "@material-ui/core/Toolbar";
-import EditMovie from "views/Movies/EditMovie";
+import EditMovie from "views/Movies/Edit/EditMovie";
 import { ThemeProvider } from "@material-ui/core";
 
 function App() {
