@@ -18,6 +18,7 @@ export const useRootStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   crudButton: {
+    marginTop: 10,
     marginBottom: 10,
   },
   tableRow: {
