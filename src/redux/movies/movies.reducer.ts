@@ -4,6 +4,7 @@ const INITIAL_STATE: IMoviesState = {
   movies: [],
   isFetching: false,
   error: "",
+  message: "",
 };
 
 const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
@@ -17,6 +18,16 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
       return {
         ...state,
         movies: action.payload,
+      };
+    case MoviesActionNames.ADD_MOVIE_SUCCESS:
+      return {
+        ...state,
+        message: action.payload,
+      };
+    case MoviesActionNames.ADD_MOVIE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return {

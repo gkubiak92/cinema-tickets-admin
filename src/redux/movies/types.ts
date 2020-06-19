@@ -4,6 +4,9 @@ export const MoviesActionNames = {
   FETCH_MOVIES_START: "FETCH_MOVIES_START",
   FETCH_MOVIES_SUCCESS: "FETCH_MOVIES_SUCCESS",
   FETCH_MOVIES_FAILURE: "FETCH_MOVIES_FAILURE",
+  ADD_MOVIE_START: "ADD_MOVIE_START",
+  ADD_MOVIE_SUCCESS: "ADD_MOVIE_SUCCESS",
+  ADD_MOVIE_FAILURE: "ADD_MOVIE_FAILURE",
 };
 
 interface IFetchMoviesStartAction {
@@ -21,13 +24,32 @@ interface IFetchMoviesFailureAction {
   payload: string;
 }
 
+export interface IAddMovieStartAction {
+  type: typeof MoviesActionNames.ADD_MOVIE_START;
+  payload: IMovie;
+}
+
+interface IAddMovieSuccessAction {
+  type: typeof MoviesActionNames.ADD_MOVIE_SUCCESS;
+  payload: string;
+}
+
+interface IAddMovieFailureAction {
+  type: typeof MoviesActionNames.ADD_MOVIE_FAILURE;
+  payload: string;
+}
+
 export type MoviesActionTypes =
   | IFetchMoviesStartAction
   | IFetchMoviesSuccessAction
-  | IFetchMoviesFailureAction;
+  | IFetchMoviesFailureAction
+  | IAddMovieStartAction
+  | IAddMovieSuccessAction
+  | IAddMovieFailureAction;
 
 export interface IMoviesState {
   movies: IMovie[];
   isFetching: boolean;
+  message: string;
   error: string;
 }

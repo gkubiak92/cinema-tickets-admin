@@ -1,8 +1,10 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { MoviesActionNames } from "./types";
+import { MoviesActionNames, IAddMovieStartAction } from "./types";
 import {
   fetchMoviesFailureAction,
   fetchMoviesSuccessAction,
+  addMovieFailureAction,
+  addMovieSuccessAction,
 } from "./movies.actions";
 import {
   firestore,
@@ -25,6 +27,22 @@ function* fetchMoviesAsync() {
   }
 }
 
+function* addMovieStart() {
+  yield takeLatest(MoviesActionNames.ADD_MOVIE_START, addMovieAsync);
+}
+
+function* addMovieAsync({ payload }: IAddMovieStartAction) {
+  try {
+    const newMovieRef = payload.id
+      ? firestore.collection("movies").doc(payload.id)
+      : firestore.collection("movies").doc();
+    yield newMovieRef.set({ ...payload });
+    yield put(addMovieSuccessAction("Successfully added movie to database"));
+  } catch (error) {
+    yield put(addMovieFailureAction(error));
+  }
+}
+
 export function* moviesSagas() {
-  yield all([call(fetchMoviesStart)]);
+  yield all([call(fetchMoviesStart), call(addMovieStart)]);
 }
