@@ -7,6 +7,9 @@ export const MoviesActionNames = {
   ADD_MOVIE_START: "ADD_MOVIE_START",
   ADD_MOVIE_SUCCESS: "ADD_MOVIE_SUCCESS",
   ADD_MOVIE_FAILURE: "ADD_MOVIE_FAILURE",
+  DELETE_MOVIE_START: "DELETE_MOVIE_START",
+  DELETE_MOVIE_SUCCESS: "DELETE_MOVIE_SUCCESS",
+  DELETE_MOVIE_FAILURE: "DELETE_MOVIE_FAILURE",
 };
 
 interface IFetchMoviesStartAction {
@@ -39,13 +42,31 @@ interface IAddMovieFailureAction {
   payload: string;
 }
 
+export interface IDeleteMovieStartAction {
+  type: typeof MoviesActionNames.DELETE_MOVIE_START;
+  payload: string;
+}
+
+interface IDeleteMovieSuccessAction {
+  type: typeof MoviesActionNames.DELETE_MOVIE_SUCCESS;
+  payload: string;
+}
+
+interface IDeleteMovieFailureAction {
+  type: typeof MoviesActionNames.DELETE_MOVIE_FAILURE;
+  payload: string;
+}
+
 export type MoviesActionTypes =
   | IFetchMoviesStartAction
   | IFetchMoviesSuccessAction
   | IFetchMoviesFailureAction
   | IAddMovieStartAction
   | IAddMovieSuccessAction
-  | IAddMovieFailureAction;
+  | IAddMovieFailureAction
+  | IDeleteMovieStartAction
+  | IDeleteMovieSuccessAction
+  | IDeleteMovieFailureAction;
 
 export interface IMoviesState {
   movies: IMovie[];

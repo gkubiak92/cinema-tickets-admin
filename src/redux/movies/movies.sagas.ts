@@ -1,10 +1,16 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { MoviesActionNames, IAddMovieStartAction } from "./types";
+import {
+  MoviesActionNames,
+  IAddMovieStartAction,
+  IDeleteMovieStartAction,
+} from "./types";
 import {
   fetchMoviesFailureAction,
   fetchMoviesSuccessAction,
   addMovieFailureAction,
   addMovieSuccessAction,
+  deleteMovieFailureAction,
+  deleteMovieSuccessAction,
 } from "./movies.actions";
 import {
   firestore,
@@ -20,7 +26,6 @@ function* fetchMoviesAsync() {
     const moviesCollectionRef = firestore.collection("movies");
     const moviesSnapshot = yield moviesCollectionRef.get();
     const moviesArray = convertFirestoreCollectionToArray(moviesSnapshot);
-    console.log(moviesArray);
     yield put(fetchMoviesSuccessAction(moviesArray));
   } catch (error) {
     yield put(fetchMoviesFailureAction(error));
@@ -43,6 +48,25 @@ function* addMovieAsync({ payload }: IAddMovieStartAction) {
   }
 }
 
+function* deleteMovieStart() {
+  yield takeLatest(MoviesActionNames.DELETE_MOVIE_START, deleteMovieAsync);
+}
+
+function* deleteMovieAsync({ payload }: IDeleteMovieStartAction) {
+  try {
+    yield firestore.collection("movies").doc(payload).delete();
+    yield put(
+      deleteMovieSuccessAction("Successfully removed movie from database")
+    );
+  } catch (error) {
+    yield put(deleteMovieFailureAction(error));
+  }
+}
+
 export function* moviesSagas() {
-  yield all([call(fetchMoviesStart), call(addMovieStart)]);
+  yield all([
+    call(fetchMoviesStart),
+    call(addMovieStart),
+    call(deleteMovieStart),
+  ]);
 }

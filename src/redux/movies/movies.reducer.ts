@@ -29,6 +29,16 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
         ...state,
         error: action.payload,
       };
+    case MoviesActionNames.DELETE_MOVIE_SUCCESS:
+      return {
+        ...state,
+        message: action.payload,
+      };
+    case MoviesActionNames.DELETE_MOVIE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return {
         ...state,
