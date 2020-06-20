@@ -36,9 +36,9 @@ export const deleteMovieStartAction = (id: string) => ({
   payload: id,
 });
 
-export const deleteMovieSuccessAction = (message: string) => ({
+export const deleteMovieSuccessAction = (id: string) => ({
   type: MoviesActionNames.DELETE_MOVIE_SUCCESS,
-  payload: message,
+  payload: id,
 });
 
 export const deleteMovieFailureAction = (error: string) => ({

@@ -1,4 +1,5 @@
 import { IMoviesState, MoviesActionTypes, MoviesActionNames } from "./types";
+import { deleteMovie } from "./movies.utils";
 
 const INITIAL_STATE: IMoviesState = {
   movies: [],
@@ -32,7 +33,8 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
     case MoviesActionNames.DELETE_MOVIE_SUCCESS:
       return {
         ...state,
-        message: action.payload,
+        movies: deleteMovie(state.movies, action.payload),
+        message: `Successfully removed movie with id: ${action.payload} from database`,
       };
     case MoviesActionNames.DELETE_MOVIE_FAILURE:
       return {

@@ -42,7 +42,7 @@ function* addMovieAsync({ payload }: IAddMovieStartAction) {
       ? firestore.collection("movies").doc(payload.id)
       : firestore.collection("movies").doc();
     yield newMovieRef.set({ ...payload });
-    yield put(addMovieSuccessAction("Successfully added movie to database"));
+    yield put(addMovieSuccessAction("Saved successfully"));
   } catch (error) {
     yield put(addMovieFailureAction(error));
   }
@@ -55,9 +55,7 @@ function* deleteMovieStart() {
 function* deleteMovieAsync({ payload }: IDeleteMovieStartAction) {
   try {
     yield firestore.collection("movies").doc(payload).delete();
-    yield put(
-      deleteMovieSuccessAction("Successfully removed movie from database")
-    );
+    yield put(deleteMovieSuccessAction(payload));
   } catch (error) {
     yield put(deleteMovieFailureAction(error));
   }
