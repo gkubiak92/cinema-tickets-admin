@@ -118,6 +118,7 @@ const EditMovieForm = ({
         <ArrayInput
           label="Photos url"
           passedElements={movieForm.values.photosUrl}
+          onChange={movieForm.handleChange}
         />
         <Button
           variant="contained"

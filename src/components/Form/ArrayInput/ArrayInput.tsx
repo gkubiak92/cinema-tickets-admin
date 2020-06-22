@@ -9,7 +9,7 @@ import {
 import { IArrayInputProps } from "./types";
 import { Delete, Add } from "@material-ui/icons";
 
-const ArrayInput = ({ passedElements, label }: IArrayInputProps) => {
+const ArrayInput = ({ passedElements, label, onChange }: IArrayInputProps) => {
   const [elements, setElements] = useState<string[]>(passedElements);
 
   const handleChange = (
@@ -20,6 +20,7 @@ const ArrayInput = ({ passedElements, label }: IArrayInputProps) => {
     const newArr = [...elements];
     newArr[elIndex] = value;
     setElements(newArr);
+    onChange(e);
   };
 
   const handleDelete = (index: number) => {
