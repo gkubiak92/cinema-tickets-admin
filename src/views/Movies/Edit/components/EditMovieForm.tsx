@@ -20,6 +20,8 @@ import { IMovie } from "api/types";
 import { connect } from "react-redux";
 import { selectMessage } from "redux/movies/movies.selectors";
 import { IRootState } from "redux/types";
+import Rating from "components/Rating";
+import ArrayInput from "components/Form/ArrayInput";
 
 const EditMovieForm = ({
   movie,
@@ -42,6 +44,16 @@ const EditMovieForm = ({
     <>
       <form onSubmit={movieForm.handleSubmit}>
         <TextField
+          label="Id"
+          fullWidth
+          type="text"
+          id="id"
+          name="id"
+          disabled
+          onChange={movieForm.handleChange}
+          value={movieForm.values.id}
+        />
+        <TextField
           label="Title"
           fullWidth
           type="text"
@@ -50,6 +62,7 @@ const EditMovieForm = ({
           onChange={movieForm.handleChange}
           value={movieForm.values.title}
         />
+        <Rating rating={movie.rating} showTitle />
         <TextField
           label="Director"
           fullWidth
@@ -102,6 +115,10 @@ const EditMovieForm = ({
             }
           />
         </FormGroup>
+        <ArrayInput
+          label="Photos url"
+          passedElements={movieForm.values.photosUrl}
+        />
         <Button
           variant="contained"
           color="primary"
