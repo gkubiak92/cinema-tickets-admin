@@ -91,6 +91,26 @@ const EditMovieForm = ({
                 }
               />
             </FormGroup>
+            <p>Genres</p>
+            <FieldArray
+              name="genres"
+              render={({ push, remove }) => (
+                <Grid container>
+                  {props.values.genres.map((genre, index) => (
+                    <Grid item xs={3} key={`genre${index}`}>
+                      <Field as={TextField} name={`genres.${index}`} />
+                      <IconButton onClick={() => remove(index)}>
+                        <Delete />
+                      </IconButton>
+                    </Grid>
+                  ))}
+                  <IconButton onClick={() => push("")}>
+                    <Add />
+                  </IconButton>
+                </Grid>
+              )}
+            />
+            <p>Photos Url</p>
             <FieldArray
               name="photosUrl"
               render={({ push, remove }) => (
