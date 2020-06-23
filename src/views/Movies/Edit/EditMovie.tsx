@@ -4,7 +4,7 @@ import { IEditMovieProps, IEditMovieMappedState } from "./types";
 import { IRootState } from "redux/types";
 import { selectMovie } from "redux/movies/movies.selectors";
 import { connect } from "react-redux";
-import EditMovieForm from "./components/EditMovieForm";
+import EditMovieForm from "./Form/EditMovieForm";
 import { IMovie } from "api/types";
 
 const initialMovieData: IMovie = {
