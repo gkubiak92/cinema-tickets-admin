@@ -7,7 +7,7 @@ import {
   ListItemText,
   Toolbar,
 } from "@material-ui/core";
-import { Movie, EventSeat } from "@material-ui/icons";
+import { Movie, EventSeat, Theaters } from "@material-ui/icons";
 import { useStyles } from "./styles";
 import { Link } from "react-router-dom";
 
@@ -33,6 +33,12 @@ const Menu = () => {
               <EventSeat />
             </ListItemIcon>
             <ListItemText>Halls</ListItemText>
+          </ListItem>
+          <ListItem button component={Link} to="/screenings">
+            <ListItemIcon>
+              <Theaters />
+            </ListItemIcon>
+            <ListItemText>Screenings</ListItemText>
           </ListItem>
         </List>
       </Drawer>

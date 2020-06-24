@@ -11,3 +11,8 @@ export interface IEditMovieFormMappedDispatch {
 export interface IEditMovieFormMappedState {
   message: string;
 }
+
+export interface IEditMovieFormFields {
+  size: any;
+  field: React.ReactNode;
+}
