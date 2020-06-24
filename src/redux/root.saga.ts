@@ -1,6 +1,6 @@
 import { all, call } from "redux-saga/effects";
-import { moviesSagas } from "./movies/movies.sagas";
-import { hallsSagas } from "./halls/halls.sagas";
+import { moviesSagas } from "./movies/sagas";
+import { hallsSagas } from "./halls/sagas";
 import { screeningsSagas } from "./screenings/sagas";
 
 export default function* rootSaga() {

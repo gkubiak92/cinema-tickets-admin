@@ -3,7 +3,7 @@ import { MoviesActionTypes } from "redux/movies/types";
 import {
   fetchMoviesStartAction,
   deleteMovieStartAction,
-} from "redux/movies/movies.actions";
+} from "redux/movies/actions";
 import { connect } from "react-redux";
 import { IMoviesListMappedDispatch, IMoviesListMappedState } from "./types";
 import {
@@ -19,7 +19,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { Add, Delete } from "@material-ui/icons";
-import { selectAllMovies } from "redux/movies/movies.selectors";
+import { selectAllMovies } from "redux/movies/selectors";
 import { IRootState } from "redux/types";
 import { useRootStyles } from "App.styles";
 import { Link, useHistory } from "react-router-dom";

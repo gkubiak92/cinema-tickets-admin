@@ -14,3 +14,18 @@ export const fetchScreeningsFailureAction = (error: string) => ({
   type: ScreeningsActionNames.FETCH_SCREENINGS_FAILURE,
   payload: error,
 });
+
+export const addScreeningStartAction = (screening: IScreening) => ({
+  type: ScreeningsActionNames.ADD_SCREENING_START,
+  payload: screening,
+});
+
+export const addScreeningSuccessAction = (message: string) => ({
+  type: ScreeningsActionNames.ADD_SCREENING_SUCCESS,
+  payload: message,
+});
+
+export const addScreeningFailureAction = (error: string) => ({
+  type: ScreeningsActionNames.ADD_SCREENING_FAILURE,
+  payload: error,
+});

@@ -4,7 +4,7 @@ import {
   firestore,
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
-import { fetchHallsFailure, fetchHallsSuccess } from "./halls.actions";
+import { fetchHallsFailure, fetchHallsSuccess } from "./actions";
 
 function* fetchHallsStart() {
   yield takeLatest(HallsActionNames.FETCH_HALLS_START, fetchHallsAsync);

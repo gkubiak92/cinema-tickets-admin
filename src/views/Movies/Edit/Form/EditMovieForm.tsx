@@ -8,10 +8,10 @@ import { Form } from "react-final-form";
 import { Button, Snackbar, Grid } from "@material-ui/core";
 import { useRootStyles } from "App.styles";
 import { MoviesActionTypes } from "redux/movies/types";
-import { addMovieStartAction } from "redux/movies/movies.actions";
+import { addMovieStartAction } from "redux/movies/actions";
 import { IMovie } from "api/types";
 import { connect } from "react-redux";
-import { selectMessage } from "redux/movies/movies.selectors";
+import { selectMessage } from "redux/movies/selectors";
 import { IRootState } from "redux/types";
 import formFields from "./FormFields";
 

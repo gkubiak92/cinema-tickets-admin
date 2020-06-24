@@ -2,7 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { IEditMovieProps, IEditMovieMappedState } from "./types";
 import { IRootState } from "redux/types";
-import { selectMovie } from "redux/movies/movies.selectors";
+import { selectMovie } from "redux/movies/selectors";
 import { connect } from "react-redux";
 import EditMovieForm from "./Form/EditMovieForm";
 import { IMovie } from "api/types";
@@ -32,13 +32,13 @@ const EditMovie = ({
   movie,
 }: RouteComponentProps<IEditMovieProps> & IEditMovieMappedState) => {
   let movieData: IMovie = initialMovieData;
-  const id = match.params.id;
+  const { id } = match.params;
   if (movie && id) {
     movieData = movie;
   }
 
   return (
-    <div className="">
+    <div>
       <EditMovieForm movie={movieData} />
     </div>
   );

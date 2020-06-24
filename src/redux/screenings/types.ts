@@ -4,6 +4,9 @@ export const ScreeningsActionNames = {
   FETCH_SCREENINGS_START: "FETCH_SCREENINGS_START",
   FETCH_SCREENINGS_SUCCESS: "FETCH_SCREENINGS_SUCCESS",
   FETCH_SCREENINGS_FAILURE: "FETCH_SCREENINGS_FAILURE",
+  ADD_SCREENING_START: "ADD_SCREENING_START",
+  ADD_SCREENING_SUCCESS: "ADD_SCREENING_SUCCESS",
+  ADD_SCREENING_FAILURE: "ADD_SCREENING_FAILURE",
 };
 
 export interface IFetchScreeningsStart {
@@ -21,10 +24,28 @@ export interface IFetchScreeningsFailure {
   payload: string;
 }
 
+export interface IAddScreeningStart {
+  type: typeof ScreeningsActionNames.ADD_SCREENING_START;
+  payload: IScreening;
+}
+
+export interface IAddScreeningSuccess {
+  type: typeof ScreeningsActionNames.ADD_SCREENING_SUCCESS;
+  payload: string;
+}
+
+export interface IAddScreeningFailure {
+  type: typeof ScreeningsActionNames.ADD_SCREENING_FAILURE;
+  payload: string;
+}
+
 export type ScreeningsActionTypes =
   | IFetchScreeningsStart
   | IFetchScreeningsSuccess
-  | IFetchScreeningsFailure;
+  | IFetchScreeningsFailure
+  | IAddScreeningStart
+  | IAddScreeningSuccess
+  | IAddScreeningFailure;
 
 export interface IScreeningsState {
   screenings: IScreening[];

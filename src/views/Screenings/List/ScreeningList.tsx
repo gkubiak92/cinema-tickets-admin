@@ -10,7 +10,7 @@ import {
   TableBody,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useRootStyles } from "App.styles";
 import { ScreeningsActionTypes } from "redux/screenings/types";
 import { fetchScreeningsStartAction } from "redux/screenings/actions";
@@ -31,6 +31,8 @@ const ScreeningList = ({
   }, [fetchScreeningsStart]);
 
   const rootClasses = useRootStyles();
+  const history = useHistory();
+  const handleRowClick = (id: string) => history.push(`/edit-screening/${id}`);
 
   return (
     <>
@@ -40,12 +42,12 @@ const ScreeningList = ({
         color="primary"
         startIcon={<Add />}
         component={Link}
-        to="/add-screening"
+        to="/edit-screening"
       >
         Add
       </Button>
       <TableContainer component={Paper}>
-        <Table aria-label="Movies list">
+        <Table aria-label="Screenings list">
           <TableHead>
             <TableRow>
               <TableCell>Id</TableCell>
@@ -57,10 +59,18 @@ const ScreeningList = ({
           <TableBody>
             {screenings.map((screening) => (
               <TableRow key={screening.id}>
-                <TableCell>{screening.id}</TableCell>
-                <TableCell>{screening.movieId}</TableCell>
-                <TableCell>{screening.hallId}</TableCell>
-                <TableCell>{screening.dateAndHour.toString()}</TableCell>
+                <TableCell onClick={() => handleRowClick(screening.id)}>
+                  {screening.id}
+                </TableCell>
+                <TableCell onClick={() => handleRowClick(screening.id)}>
+                  {screening.movieId}
+                </TableCell>
+                <TableCell onClick={() => handleRowClick(screening.id)}>
+                  {screening.hallId}
+                </TableCell>
+                <TableCell onClick={() => handleRowClick(screening.id)}>
+                  {screening.dateAndHour.toString()}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

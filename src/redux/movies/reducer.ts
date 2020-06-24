@@ -1,5 +1,5 @@
 import { IMoviesState, MoviesActionTypes, MoviesActionNames } from "./types";
-import { deleteMovie } from "./movies.utils";
+import { deleteMovie } from "./utils";
 
 const INITIAL_STATE: IMoviesState = {
   movies: [],

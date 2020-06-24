@@ -2,12 +2,14 @@ import { takeLatest, put, all, call } from "redux-saga/effects";
 import {
   fetchScreeningsFailureAction,
   fetchScreeningsSuccessAction,
+  addScreeningFailureAction,
+  addScreeningSuccessAction,
 } from "./actions";
 import {
   firestore,
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
-import { ScreeningsActionNames } from "./types";
+import { ScreeningsActionNames, IAddScreeningStart } from "./types";
 
 function* fetchScreeningsStart() {
   yield takeLatest(
@@ -18,7 +20,6 @@ function* fetchScreeningsStart() {
 
 function* fetchScreeningsAsync() {
   try {
-    console.log("dupa");
     const screeningsCollectionRef = firestore.collection("screenings");
     const screeningsCollectionSnapshot = yield screeningsCollectionRef.get();
     const screeningsArray = yield convertFirestoreCollectionToArray(
@@ -30,6 +31,25 @@ function* fetchScreeningsAsync() {
   }
 }
 
+function* addScreeningStart() {
+  yield takeLatest(
+    ScreeningsActionNames.ADD_SCREENING_START,
+    addScreeningAsync
+  );
+}
+
+function* addScreeningAsync({ payload }: IAddScreeningStart) {
+  try {
+    const newScreeningDocRef = payload.id
+      ? firestore.collection("screenings").doc(payload.id)
+      : firestore.collection("screenings").doc();
+    yield newScreeningDocRef.set({ ...payload });
+    yield put(addScreeningSuccessAction("Saved screening successfully"));
+  } catch (error) {
+    yield put(addScreeningFailureAction(error));
+  }
+}
+
 export function* screeningsSagas() {
-  yield all([call(fetchScreeningsStart)]);
+  yield all([call(fetchScreeningsStart), call(addScreeningStart)]);
 }

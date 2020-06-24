@@ -33,6 +33,12 @@ const screeningsReducer = (
         isFetching: false,
         error: action.payload,
       };
+    case ScreeningsActionNames.ADD_SCREENING_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        message: action.payload,
+      };
 
     default:
       return {

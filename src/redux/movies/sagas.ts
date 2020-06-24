@@ -11,7 +11,7 @@ import {
   addMovieSuccessAction,
   deleteMovieFailureAction,
   deleteMovieSuccessAction,
-} from "./movies.actions";
+} from "./actions";
 import {
   firestore,
   convertFirestoreCollectionToArray,

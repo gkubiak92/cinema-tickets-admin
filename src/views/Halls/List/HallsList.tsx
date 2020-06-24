@@ -1,6 +1,6 @@
 import React, { useEffect, Dispatch } from "react";
 import { HallsActionTypes } from "redux/halls/types";
-import { fetchHallsStart } from "redux/halls/halls.actions";
+import { fetchHallsStart } from "redux/halls/actions";
 import { connect } from "react-redux";
 import { IHallsListMappedDispatch, IHallsListMappedState } from "./types";
 import { Add } from "@material-ui/icons";
@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { IRootState } from "redux/types";
-import { selectAllHalls } from "redux/halls/halls.selectors";
+import { selectAllHalls } from "redux/halls/selectors";
 import { useRootStyles } from "App.styles";
 
 const HallsList = ({
@@ -37,12 +37,12 @@ const HallsList = ({
         color="primary"
         startIcon={<Add />}
         component={Link}
-        to="/add-movie"
+        to="/edit-hall"
       >
         Add
       </Button>
       <TableContainer component={Paper}>
-        <Table aria-label="Movies list">
+        <Table aria-label="Halls list">
           <TableHead>
             <TableRow>
               <TableCell>Id</TableCell>
