@@ -11,6 +11,8 @@ import ContentContainer from "components/ContentContainer";
 import Toolbar from "@material-ui/core/Toolbar";
 import EditMovie from "views/Movies/Edit/EditMovie";
 import { ThemeProvider } from "@material-ui/core";
+import ScreeningList from "views/Screenings/List";
+import EditScreening from "views/Screenings/Edit";
 
 function App() {
   const classes = useRootStyles();
@@ -24,9 +26,12 @@ function App() {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/movies" component={MoviesList} />
-            <Route exact path="/halls" component={HallsList} />
             <Route exact path="/edit-movie" component={EditMovie} />
             <Route exact path="/edit-movie/:id" component={EditMovie} />
+            <Route exact path="/halls" component={HallsList} />
+            <Route exact path="/screenings" component={ScreeningList} />
+            <Route exact path="/edit-screening" component={EditScreening} />
+            <Route exact path="/edit-screening/:id" component={EditScreening} />
           </Switch>
         </ContentContainer>
       </div>

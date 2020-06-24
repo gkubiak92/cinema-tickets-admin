@@ -13,7 +13,7 @@ import { IMovie } from "api/types";
 import { connect } from "react-redux";
 import { selectMessage } from "redux/movies/movies.selectors";
 import { IRootState } from "redux/types";
-import { editMovieFormFields } from "./FormFields";
+import formFields from "./FormFields";
 
 const EditMovieForm = ({
   movie,
@@ -37,7 +37,7 @@ const EditMovieForm = ({
           return (
             <form onSubmit={handleSubmit} noValidate>
               <Grid container spacing={2}>
-                {editMovieFormFields.map((item, index) => (
+                {formFields.map((item, index) => (
                   <Grid item xs={item.size} key={index}>
                     {item.field}
                   </Grid>

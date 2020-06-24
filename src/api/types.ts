@@ -35,3 +35,10 @@ export interface ISeat {
   disabled: boolean;
   isAvailable: boolean;
 }
+
+export interface IScreening {
+  dateAndHour: Object;
+  hallId: string;
+  id: string;
+  movieId: string;
+}

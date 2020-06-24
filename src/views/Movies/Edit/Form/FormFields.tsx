@@ -12,7 +12,7 @@ const genres: SelectData[] = [
   { label: "Romance", value: "romance" },
 ];
 
-export const editMovieFormFields: IEditMovieFormFields[] = [
+export default [
   {
     size: 6,
     field: <TextField name="id" label="id" fullWidth disabled />,
@@ -92,4 +92,8 @@ export const editMovieFormFields: IEditMovieFormFields[] = [
       />
     ),
   },
-];
+  {
+    size: 12,
+    field: <TextField name="thumbnailUrl" label="thumbnailUrl" fullWidth />,
+  },
+] as IEditMovieFormFields[];
