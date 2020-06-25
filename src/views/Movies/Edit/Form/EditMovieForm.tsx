@@ -23,7 +23,6 @@ const EditMovieForm = ({
   IEditMovieFormMappedDispatch &
   IEditMovieFormMappedState) => {
   const rootClasses = useRootStyles();
-  console.log("rerender of editmovie form");
 
   const onSubmit = (values: IMovie) => addMovie(values);
 
@@ -33,7 +32,6 @@ const EditMovieForm = ({
         initialValues={{ ...movie }}
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => {
-          console.log("Rerender of editmovie form");
           return (
             <form onSubmit={handleSubmit} noValidate>
               <Grid container spacing={2}>

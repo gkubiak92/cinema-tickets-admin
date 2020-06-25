@@ -7,3 +7,8 @@ export interface IEditScreeningProps {
 export interface IEditScreeningMappedState {
   screening: IScreening | undefined;
 }
+
+export interface IEditScreeningMappedDispatch {
+  fetchMoviesStart: () => void;
+  fetchHallsStart: () => void;
+}

@@ -1,16 +1,16 @@
 import { HallsActionNames } from "./types";
 import { IHall } from "api/types";
 
-export const fetchHallsStart = () => ({
+export const fetchHallsStartAction = () => ({
   type: HallsActionNames.FETCH_HALLS_START,
 });
 
-export const fetchHallsSuccess = (halls: IHall[]) => ({
+export const fetchHallsSuccessAction = (halls: IHall[]) => ({
   type: HallsActionNames.FETCH_HALLS_SUCCESS,
   payload: halls,
 });
 
-export const fetchHallsFailure = (error: string) => ({
+export const fetchHallsFailureAction = (error: string) => ({
   type: HallsActionNames.FETCH_HALLS_FAILURE,
   payload: error,
 });

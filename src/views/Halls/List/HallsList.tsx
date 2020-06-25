@@ -1,6 +1,6 @@
 import React, { useEffect, Dispatch } from "react";
 import { HallsActionTypes } from "redux/halls/types";
-import { fetchHallsStart } from "redux/halls/actions";
+import { fetchHallsStartAction } from "redux/halls/actions";
 import { connect } from "react-redux";
 import { IHallsListMappedDispatch, IHallsListMappedState } from "./types";
 import { Add } from "@material-ui/icons";
@@ -68,7 +68,7 @@ const mapStateToProps = (state: IRootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<HallsActionTypes>) => ({
-  fetchHallsStart: () => dispatch(fetchHallsStart()),
+  fetchHallsStart: () => dispatch(fetchHallsStartAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HallsList);
