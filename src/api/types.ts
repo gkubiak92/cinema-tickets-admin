@@ -26,9 +26,11 @@ export interface IScreeningDate {
 export interface IHall {
   name: string;
   id: string;
-  seatArrangement: {
-    [key: string]: ISeat[];
-  };
+  seatArrangement: ISeatArrangement;
+}
+
+export interface ISeatArrangement {
+  [key: string]: ISeat[];
 }
 
 export interface ISeat {

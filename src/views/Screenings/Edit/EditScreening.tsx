@@ -14,6 +14,7 @@ import { MoviesActionTypes } from "redux/movies/types";
 import { HallsActionTypes } from "redux/halls/types";
 import { fetchMoviesStartAction } from "redux/movies/actions";
 import { fetchHallsStartAction } from "redux/halls/actions";
+import SeatArrangement from "components/SeatArrangement/SeatArrangement";
 
 const initialScreeningData: IScreening = {
   dateAndHour: "",
@@ -44,6 +45,7 @@ const EditScreening = ({
   return (
     <div>
       <EditScreeningForm screening={screeningData} />
+      <SeatArrangement hallId={screeningData.hallId} />
     </div>
   );
 };

@@ -5,6 +5,11 @@ const selectHalls = (state: IRootState) => state.halls;
 
 export const selectAllHalls = createSelector(selectHalls, ({ halls }) => halls);
 
+export const selectHall = (id: string) =>
+  createSelector(selectHalls, ({ halls }) =>
+    halls.find((hall) => hall.id === id)
+  );
+
 export const selectHallsSelectList = createSelector(
   selectHalls,
   ({ halls }) => {
@@ -13,3 +18,19 @@ export const selectHallsSelectList = createSelector(
     return arr;
   }
 );
+
+export const selectHallSeatArrangement = (hallId: string) =>
+  createSelector(selectHalls, ({ halls }) => {
+    const hall = halls.find((hall) => hall.id === hallId);
+    if (hall) {
+      const unorderedObject = hall.seatArrangement;
+      const orderedObject: any = {};
+      Object.keys(unorderedObject)
+        .sort()
+        .forEach((key) => {
+          orderedObject[key] = unorderedObject[key];
+        });
+      return orderedObject;
+    }
+    return undefined;
+  });
