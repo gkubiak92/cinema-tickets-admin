@@ -1,14 +1,13 @@
 import { IHall } from "api/types";
 
-export const HallsActionNames = {
-  FETCH_HALLS_START: "FETCH_HALLS_START",
-  FETCH_HALLS_SUCCESS: "FETCH_HALLS_SUCCESS",
-  FETCH_HALLS_FAILURE: "FETCH_HALLS_FAILURE",
-};
+export enum HallsActionNames {
+  FETCH_HALLS_START = "FETCH_HALLS_START",
+  FETCH_HALLS_SUCCESS = "FETCH_HALLS_SUCCESS",
+  FETCH_HALLS_FAILURE = "FETCH_HALLS_FAILURE",
+}
 
 export interface IFetchHallsStart {
   type: typeof HallsActionNames.FETCH_HALLS_START;
-  payload?: any;
 }
 
 export interface IFetchHallsSuccess {

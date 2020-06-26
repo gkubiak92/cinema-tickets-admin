@@ -1,28 +1,27 @@
 import { IMovie } from "api/types";
 
-export const MoviesActionNames = {
-  FETCH_MOVIES_START: "FETCH_MOVIES_START",
-  FETCH_MOVIES_SUCCESS: "FETCH_MOVIES_SUCCESS",
-  FETCH_MOVIES_FAILURE: "FETCH_MOVIES_FAILURE",
-  ADD_MOVIE_START: "ADD_MOVIE_START",
-  ADD_MOVIE_SUCCESS: "ADD_MOVIE_SUCCESS",
-  ADD_MOVIE_FAILURE: "ADD_MOVIE_FAILURE",
-  DELETE_MOVIE_START: "DELETE_MOVIE_START",
-  DELETE_MOVIE_SUCCESS: "DELETE_MOVIE_SUCCESS",
-  DELETE_MOVIE_FAILURE: "DELETE_MOVIE_FAILURE",
-};
-
-interface IFetchMoviesStartAction {
-  type: typeof MoviesActionNames.FETCH_MOVIES_START;
-  payload?: any;
+export enum MoviesActionNames {
+  FETCH_MOVIES_START = "FETCH_MOVIES_START",
+  FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS",
+  FETCH_MOVIES_FAILURE = "FETCH_MOVIES_FAILURE",
+  ADD_MOVIE_START = "ADD_MOVIE_START",
+  ADD_MOVIE_SUCCESS = "ADD_MOVIE_SUCCESS",
+  ADD_MOVIE_FAILURE = "ADD_MOVIE_FAILURE",
+  DELETE_MOVIE_START = "DELETE_MOVIE_START",
+  DELETE_MOVIE_SUCCESS = "DELETE_MOVIE_SUCCESS",
+  DELETE_MOVIE_FAILURE = "DELETE_MOVIE_FAILURE",
 }
 
-interface IFetchMoviesSuccessAction {
+export interface IFetchMoviesStartAction {
+  type: typeof MoviesActionNames.FETCH_MOVIES_START;
+}
+
+export interface IFetchMoviesSuccessAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_SUCCESS;
   payload: IMovie[];
 }
 
-interface IFetchMoviesFailureAction {
+export interface IFetchMoviesFailureAction {
   type: typeof MoviesActionNames.FETCH_MOVIES_FAILURE;
   payload: string;
 }
@@ -32,12 +31,12 @@ export interface IAddMovieStartAction {
   payload: IMovie;
 }
 
-interface IAddMovieSuccessAction {
+export interface IAddMovieSuccessAction {
   type: typeof MoviesActionNames.ADD_MOVIE_SUCCESS;
   payload: string;
 }
 
-interface IAddMovieFailureAction {
+export interface IAddMovieFailureAction {
   type: typeof MoviesActionNames.ADD_MOVIE_FAILURE;
   payload: string;
 }
@@ -47,12 +46,12 @@ export interface IDeleteMovieStartAction {
   payload: string;
 }
 
-interface IDeleteMovieSuccessAction {
+export interface IDeleteMovieSuccessAction {
   type: typeof MoviesActionNames.DELETE_MOVIE_SUCCESS;
   payload: string;
 }
 
-interface IDeleteMovieFailureAction {
+export interface IDeleteMovieFailureAction {
   type: typeof MoviesActionNames.DELETE_MOVIE_FAILURE;
   payload: string;
 }

@@ -20,6 +20,7 @@ import { selectAllHalls } from "redux/halls/selectors";
 import { useRootStyles } from "App.styles";
 import { IHall } from "api/types";
 import { setHallToEdit } from "redux/hall/actions";
+import { HallActionsTypes } from "redux/hall/types";
 
 const HallsList = ({
   fetchHallsStart,
@@ -79,7 +80,9 @@ const mapStateToProps = (state: IRootState) => ({
   halls: selectAllHalls(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<HallsActionTypes>) => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch<HallsActionTypes | HallActionsTypes>
+) => ({
   fetchHallsStart: () => dispatch(fetchHallsStartAction()),
   setHallToEdit: (hall: IHall) => dispatch(setHallToEdit(hall)),
 });
