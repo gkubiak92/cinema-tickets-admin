@@ -1,4 +1,5 @@
-import { IHall, ISeatArrangement } from "api/types";
+import { IHall } from "api/types";
+import { IEditHallFormData } from "views/Halls/Edit/types";
 
 export enum HallActionsNames {
   SET_HALL_TO_EDIT = "SET_HALL_TO_EDIT",
@@ -15,7 +16,7 @@ export interface ISetHallToEdit {
 
 export interface ISetHallSeats {
   type: HallActionsNames.SET_HALL_SEATS;
-  payload: ISeatArrangement;
+  payload: IEditHallFormData;
 }
 
 export interface IAddHallStartAction {

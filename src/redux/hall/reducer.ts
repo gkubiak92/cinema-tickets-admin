@@ -1,4 +1,5 @@
 import { IHallState, HallActionsTypes, HallActionsNames } from "./types";
+import { getSeatArrangementFromSeatsMap } from "./utils";
 
 const INITIAL_STATE: IHallState = {
   id: "",
@@ -20,7 +21,7 @@ const hallReducer = (state = INITIAL_STATE, action: HallActionsTypes) => {
     case HallActionsNames.SET_HALL_SEATS:
       return {
         ...state,
-        seatArrangement: action.payload,
+        seatArrangement: getSeatArrangementFromSeatsMap(action.payload),
       };
     case HallActionsNames.ADD_HALL_SUCCESS:
       return {

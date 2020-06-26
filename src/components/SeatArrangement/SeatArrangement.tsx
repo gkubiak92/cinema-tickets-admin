@@ -5,9 +5,9 @@ import { IRootState } from "redux/types";
 import { selectHallSeatArrangement } from "redux/halls/selectors";
 import { connect } from "react-redux";
 import Seat from "./Seat";
+import { selectSeatsToEdit } from "redux/hall/selectors";
 
 const SeatArrangement = ({
-  hallId,
   seatArrangement,
 }: ISeatArrangementProps & ISeatArrangementMappedState) => {
   return seatArrangement ? (
@@ -30,7 +30,9 @@ const mapStateToProps = (
   state: IRootState,
   ownProps: ISeatArrangementProps
 ) => ({
-  seatArrangement: selectHallSeatArrangement(ownProps.hallId)(state),
+  seatArrangement: ownProps.edit
+    ? selectSeatsToEdit(state)
+    : selectHallSeatArrangement(ownProps.hallId)(state),
 });
 
 export default connect(mapStateToProps)(SeatArrangement);

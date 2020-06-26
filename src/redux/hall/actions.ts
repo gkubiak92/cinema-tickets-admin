@@ -1,4 +1,4 @@
-import { ISeatArrangement, IHall } from "api/types";
+import { IHall } from "api/types";
 import {
   HallActionsNames,
   ISetHallToEdit,
@@ -7,6 +7,7 @@ import {
   IAddHallSuccessAction,
   IAddHallFailureAction,
 } from "./types";
+import { IEditHallFormData } from "views/Halls/Edit/types";
 
 export const setHallToEdit = (hall: IHall): ISetHallToEdit => ({
   type: HallActionsNames.SET_HALL_TO_EDIT,
@@ -14,10 +15,10 @@ export const setHallToEdit = (hall: IHall): ISetHallToEdit => ({
 });
 
 export const setHallSeatsAction = (
-  seatArrangement: ISeatArrangement
+  hallData: IEditHallFormData
 ): ISetHallSeats => ({
   type: HallActionsNames.SET_HALL_SEATS,
-  payload: seatArrangement,
+  payload: hallData,
 });
 
 export const addHallStartAction = (hall: IHall): IAddHallStartAction => ({

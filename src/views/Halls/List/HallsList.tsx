@@ -14,7 +14,7 @@ import {
   TableCell,
   TableBody,
 } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { IRootState } from "redux/types";
 import { selectAllHalls } from "redux/halls/selectors";
 import { useRootStyles } from "App.styles";
@@ -32,9 +32,10 @@ const HallsList = ({
   }, [fetchHallsStart]);
 
   const history = useHistory();
-  const handleRowClick = (hall: IHall, id: string) => {
-    setHallToEdit(hall);
-    history.push(`/edit-hall/${id}`);
+  const handleEditClick = (hall?: IHall, id?: string) => {
+    const defaultHallValues: IHall = { id: "", name: "", seatArrangement: {} };
+    hall ? setHallToEdit(hall) : setHallToEdit(defaultHallValues);
+    id ? history.push(`/edit-hall/${id}`) : history.push(`/edit-hall/`);
   };
 
   const rootClasses = useRootStyles();
@@ -46,8 +47,7 @@ const HallsList = ({
         variant="contained"
         color="primary"
         startIcon={<Add />}
-        component={Link}
-        to="/edit-hall"
+        onClick={() => handleEditClick()}
       >
         Add
       </Button>
@@ -63,7 +63,7 @@ const HallsList = ({
             {halls.map((hall) => (
               <TableRow
                 key={hall.id}
-                onClick={() => handleRowClick(hall, hall.id)}
+                onClick={() => handleEditClick(hall, hall.id)}
               >
                 <TableCell>{hall.id}</TableCell>
                 <TableCell>{hall.name}</TableCell>

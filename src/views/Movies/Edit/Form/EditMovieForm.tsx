@@ -31,27 +31,25 @@ const EditMovieForm = ({
       <Form
         initialValues={{ ...movie }}
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => {
-          return (
-            <form onSubmit={handleSubmit} noValidate>
-              <Grid container spacing={2}>
-                {formFields.map((item, index) => (
-                  <Grid item xs={item.size} key={index}>
-                    {item.field}
-                  </Grid>
-                ))}
-              </Grid>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                className={rootClasses.crudButton}
-              >
-                Save
-              </Button>
-            </form>
-          );
-        }}
+        render={({ handleSubmit, form, submitting, pristine, values }) => (
+          <form onSubmit={handleSubmit} noValidate>
+            <Grid container spacing={2}>
+              {formFields.map((item, index) => (
+                <Grid item xs={item.size} key={index}>
+                  {item.field}
+                </Grid>
+              ))}
+            </Grid>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              className={rootClasses.crudButton}
+            >
+              Save
+            </Button>
+          </form>
+        )}
       />
       <Snackbar open={!!message} autoHideDuration={3000}>
         <p>{message}</p>
