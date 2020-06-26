@@ -13,6 +13,7 @@ import EditMovie from "views/Movies/Edit/EditMovie";
 import { ThemeProvider } from "@material-ui/core";
 import ScreeningList from "views/Screenings/List";
 import EditScreening from "views/Screenings/Edit";
+import EditHall from "views/Halls/Edit";
 
 function App() {
   const classes = useRootStyles();
@@ -29,6 +30,8 @@ function App() {
             <Route exact path="/edit-movie" component={EditMovie} />
             <Route exact path="/edit-movie/:id" component={EditMovie} />
             <Route exact path="/halls" component={HallsList} />
+            <Route exact path="/edit-hall" component={EditHall} />
+            <Route exact path="/edit-hall/:id" component={EditHall} />
             <Route exact path="/screenings" component={ScreeningList} />
             <Route exact path="/edit-screening" component={EditScreening} />
             <Route exact path="/edit-screening/:id" component={EditScreening} />

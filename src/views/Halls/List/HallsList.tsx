@@ -14,18 +14,27 @@ import {
   TableCell,
   TableBody,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { IRootState } from "redux/types";
 import { selectAllHalls } from "redux/halls/selectors";
 import { useRootStyles } from "App.styles";
+import { IHall } from "api/types";
+import { setHallToEdit } from "redux/hall/actions";
 
 const HallsList = ({
   fetchHallsStart,
+  setHallToEdit,
   halls,
 }: IHallsListMappedDispatch & IHallsListMappedState) => {
   useEffect(() => {
     fetchHallsStart();
   }, [fetchHallsStart]);
+
+  const history = useHistory();
+  const handleRowClick = (hall: IHall, id: string) => {
+    setHallToEdit(hall);
+    history.push(`/edit-hall/${id}`);
+  };
 
   const rootClasses = useRootStyles();
 
@@ -51,7 +60,10 @@ const HallsList = ({
           </TableHead>
           <TableBody>
             {halls.map((hall) => (
-              <TableRow key={hall.id}>
+              <TableRow
+                key={hall.id}
+                onClick={() => handleRowClick(hall, hall.id)}
+              >
                 <TableCell>{hall.id}</TableCell>
                 <TableCell>{hall.name}</TableCell>
               </TableRow>
@@ -69,6 +81,7 @@ const mapStateToProps = (state: IRootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<HallsActionTypes>) => ({
   fetchHallsStart: () => dispatch(fetchHallsStartAction()),
+  setHallToEdit: (hall: IHall) => dispatch(setHallToEdit(hall)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HallsList);

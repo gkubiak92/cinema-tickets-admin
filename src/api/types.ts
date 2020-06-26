@@ -35,7 +35,6 @@ export interface ISeatArrangement {
 
 export interface ISeat {
   disabled: boolean;
-  isAvailable: boolean;
 }
 
 export interface IScreening {
