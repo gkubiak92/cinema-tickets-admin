@@ -51,4 +51,5 @@ export interface IScreeningsState {
   screenings: IScreening[];
   isFetching: boolean;
   error: string;
+  isDataLoaded: boolean;
 }

@@ -26,10 +26,11 @@ const MoviesList = ({
   fetchMoviesStart,
   deleteMovieStart,
   movies,
+  isDataLoaded
 }: IMoviesListMappedDispatch & IMoviesListMappedState) => {
   useEffect(() => {
-    fetchMoviesStart();
-  }, [fetchMoviesStart]);
+    if (!isDataLoaded) { fetchMoviesStart(); }
+  }, [fetchMoviesStart, isDataLoaded]);
 
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [movieToDelete, setMovieToDelete] = useState("");
@@ -116,6 +117,7 @@ const MoviesList = ({
 
 const mapStateToProps = (state: IRootState) => ({
   movies: selectAllMovies(state),
+  isDataLoaded: state.movies.isDataLoaded
 });
 
 const mapDispatchToProps = {

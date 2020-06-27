@@ -9,4 +9,5 @@ export interface IHallsListMappedDispatch {
 
 export interface IHallsListMappedState {
   halls: IHall[];
+  isDataLoaded: boolean;
 }

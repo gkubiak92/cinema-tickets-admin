@@ -24,10 +24,11 @@ const HallsList = ({
   fetchHallsStart,
   setHallToEdit,
   halls,
+  isDataLoaded
 }: IHallsListMappedDispatch & IHallsListMappedState) => {
   useEffect(() => {
-    fetchHallsStart();
-  }, [fetchHallsStart]);
+    if (!isDataLoaded) { fetchHallsStart(); }
+  }, [fetchHallsStart, isDataLoaded]);
 
   const history = useHistory();
   const handleEditClick = (hall?: IHall, id?: string) => {
@@ -76,6 +77,7 @@ const HallsList = ({
 
 const mapStateToProps = (state: IRootState) => ({
   halls: selectAllHalls(state),
+  isDataLoaded: state.halls.isDataLoaded
 });
 
 const mapDispatchToProps = {

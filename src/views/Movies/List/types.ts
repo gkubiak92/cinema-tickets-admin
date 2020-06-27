@@ -8,4 +8,5 @@ export interface IMoviesListMappedDispatch {
 
 export interface IMoviesListMappedState {
   movies: IMovie[];
+  isDataLoaded: boolean;
 }

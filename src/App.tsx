@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Menu from "components/Menu";
@@ -14,8 +14,16 @@ import { ThemeProvider } from "@material-ui/core";
 import ScreeningList from "views/Screenings/List";
 import EditScreening from "views/Screenings/Edit";
 import EditHall from "views/Halls/Edit";
+import { fetchMoviesStart } from 'redux/movies/actions'
+import { fetchHallsStart } from 'redux/halls/actions'
+import { IAppMappedDispatch } from "types";
+import { connect } from "react-redux";
 
-function App() {
+function App({ fetchMoviesStart, fetchHallsStart }: & IAppMappedDispatch) {
+  useEffect(() => {
+    fetchMoviesStart();
+    fetchHallsStart();
+  }, [fetchMoviesStart, fetchHallsStart])
   const classes = useRootStyles();
   return (
     <ThemeProvider theme={theme}>
@@ -42,4 +50,9 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  fetchMoviesStart,
+  fetchHallsStart
+}
+
+export default connect(null, mapDispatchToProps)(App);

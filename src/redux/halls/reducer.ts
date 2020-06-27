@@ -4,6 +4,7 @@ const INITIAL_STATE: IHallsState = {
   halls: [],
   isFetching: false,
   error: "",
+  isDataLoaded: false,
 };
 
 const hallsReducer = (state = INITIAL_STATE, action: HallsActionTypes) => {
@@ -17,12 +18,14 @@ const hallsReducer = (state = INITIAL_STATE, action: HallsActionTypes) => {
       return {
         ...state,
         halls: action.payload,
+        isDataLoaded: true,
       };
     case HallsActionNames.FETCH_HALLS_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: action.payload,
+        isDataLoaded: false,
       };
     default:
       return {

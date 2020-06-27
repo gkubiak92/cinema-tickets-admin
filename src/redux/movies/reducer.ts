@@ -6,6 +6,7 @@ const INITIAL_STATE: IMoviesState = {
   isFetching: false,
   error: "",
   message: "",
+  isDataLoaded: false,
 };
 
 const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
@@ -19,6 +20,7 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
       return {
         ...state,
         movies: action.payload,
+        isDataLoaded: true
       };
     case MoviesActionNames.ADD_MOVIE_SUCCESS:
       return {
@@ -26,6 +28,7 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
         message: action.payload,
       };
     case MoviesActionNames.ADD_MOVIE_FAILURE:
+    case MoviesActionNames.FETCH_MOVIES_FAILURE:
       return {
         ...state,
         error: action.payload,

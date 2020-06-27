@@ -7,4 +7,5 @@ export interface IScreeningsListMappedDispatch {
 
 export interface IScreeningsListMappedState {
   screenings: IScreening[];
+  isDataLoaded: boolean;
 }

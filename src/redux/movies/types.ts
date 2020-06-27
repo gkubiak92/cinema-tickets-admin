@@ -72,4 +72,5 @@ export interface IMoviesState {
   isFetching: boolean;
   message: string;
   error: string;
+  isDataLoaded: boolean;
 }

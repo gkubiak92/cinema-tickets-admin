@@ -24,10 +24,11 @@ import { connect } from "react-redux";
 const ScreeningList = ({
   screenings,
   fetchScreeningsStart,
+  isDataLoaded
 }: IScreeningsListMappedDispatch & IScreeningsListMappedState) => {
   useEffect(() => {
-    fetchScreeningsStart();
-  }, [fetchScreeningsStart]);
+    if (!isDataLoaded) { fetchScreeningsStart() };
+  }, [fetchScreeningsStart, isDataLoaded]);
 
   const rootClasses = useRootStyles();
   const history = useHistory();
@@ -81,6 +82,7 @@ const ScreeningList = ({
 
 const mapStateToProps = (state: IRootState) => ({
   screenings: selectAllScreenings(state),
+  isDataLoaded: state.screenings.isDataLoaded
 });
 
 const mapDispatchToProps = { fetchScreeningsStart };

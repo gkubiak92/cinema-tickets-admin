@@ -8,6 +8,7 @@ const INITIAL_STATE: IScreeningsState = {
   screenings: [],
   isFetching: false,
   error: "",
+  isDataLoaded: false,
 };
 
 const screeningsReducer = (
@@ -26,11 +27,13 @@ const screeningsReducer = (
         screenings: action.payload,
         isFetching: false,
         error: false,
+        isDataLoaded: true
       };
     case ScreeningsActionNames.FETCH_SCREENINGS_FAILURE:
       return {
         ...state,
         isFetching: false,
+        isDataLoaded: false,
         error: action.payload,
       };
     case ScreeningsActionNames.ADD_SCREENING_SUCCESS:

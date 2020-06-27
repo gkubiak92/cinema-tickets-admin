@@ -29,4 +29,5 @@ export interface IHallsState {
   halls: IHall[];
   isFetching: boolean;
   error: string;
+  isDataLoaded: boolean;
 }
