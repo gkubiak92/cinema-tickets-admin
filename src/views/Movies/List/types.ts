@@ -10,3 +10,5 @@ export interface IMoviesListMappedState {
   movies: IMovie[];
   isDataLoaded: boolean;
 }
+
+export type IMoviesListProps = IMoviesListMappedDispatch & IMoviesListMappedState;

@@ -9,3 +9,5 @@ export interface IScreeningsListMappedState {
   screenings: IScreening[];
   isDataLoaded: boolean;
 }
+
+export type ScreeningsListProps = IScreeningsListMappedDispatch & IScreeningsListMappedState

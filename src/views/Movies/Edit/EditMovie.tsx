@@ -1,6 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
-import { IEditMovieProps, IEditMovieMappedState } from "./types";
+import { IEditMovieProps } from "./types";
 import { IRootState } from "redux/types";
 import { selectMovie } from "redux/movies/selectors";
 import { connect } from "react-redux";
@@ -30,7 +29,7 @@ const initialMovieData: IMovie = {
 const EditMovie = ({
   match,
   movie,
-}: RouteComponentProps<IEditMovieProps> & IEditMovieMappedState) => {
+}: IEditMovieProps) => {
   let movieData: IMovie = initialMovieData;
   const { id } = match.params;
   if (movie && id) {
@@ -46,7 +45,7 @@ const EditMovie = ({
 
 const mapStateToProps = (
   state: IRootState,
-  ownProps: RouteComponentProps<IEditMovieProps>
+  ownProps: IEditMovieProps
 ) => ({
   movie: selectMovie(ownProps.match.params.id)(state),
 });

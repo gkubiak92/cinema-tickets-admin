@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchMoviesStart, deleteMovieStart } from "redux/movies/actions";
 import { connect } from "react-redux";
-import { IMoviesListMappedDispatch, IMoviesListMappedState } from "./types";
+import { IMoviesListProps } from "./types";
 import {
   TableContainer,
   Paper,
@@ -27,7 +27,7 @@ const MoviesList = ({
   deleteMovieStart,
   movies,
   isDataLoaded
-}: IMoviesListMappedDispatch & IMoviesListMappedState) => {
+}: IMoviesListProps) => {
   useEffect(() => {
     if (!isDataLoaded) { fetchMoviesStart(); }
   }, [fetchMoviesStart, isDataLoaded]);

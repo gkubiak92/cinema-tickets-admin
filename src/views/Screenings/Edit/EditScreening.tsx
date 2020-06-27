@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { IScreening } from "api/types";
-import { RouteComponentProps } from "react-router-dom";
 import {
-  IEditScreeningProps,
-  IEditScreeningMappedState,
-  IEditScreeningMappedDispatch,
+  EditScreeningProps,
 } from "./types";
 import EditScreeningForm from "./Form/EditScreeningForm";
 import { selectScreening } from "redux/screenings/selectors";
@@ -26,9 +23,7 @@ const EditScreening = ({
   screening,
   fetchHallsStart,
   fetchMoviesStart,
-}: RouteComponentProps<IEditScreeningProps> &
-  IEditScreeningMappedState &
-  IEditScreeningMappedDispatch) => {
+}: EditScreeningProps) => {
   useEffect(() => {
     fetchHallsStart();
     fetchMoviesStart();
@@ -50,7 +45,7 @@ const EditScreening = ({
 
 const mapStateToProps = (
   state: IRootState,
-  ownProps: RouteComponentProps<IEditScreeningProps>
+  ownProps: EditScreeningProps
 ) => ({
   screening: selectScreening(ownProps.match.params.id)(state),
 });

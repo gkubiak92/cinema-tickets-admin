@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetchHallsStart } from "redux/halls/actions";
 import { connect } from "react-redux";
-import { IHallsListMappedDispatch, IHallsListMappedState } from "./types";
+import { IHallsListProps } from "./types";
 import { Add } from "@material-ui/icons";
 import {
   Button,
@@ -25,7 +25,7 @@ const HallsList = ({
   setHallToEdit,
   halls,
   isDataLoaded
-}: IHallsListMappedDispatch & IHallsListMappedState) => {
+}: IHallsListProps) => {
   useEffect(() => {
     if (!isDataLoaded) { fetchHallsStart(); }
   }, [fetchHallsStart, isDataLoaded]);

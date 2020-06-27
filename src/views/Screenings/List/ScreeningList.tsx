@@ -14,8 +14,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useRootStyles } from "App.styles";
 import { IRootState } from "redux/types";
 import {
-  IScreeningsListMappedDispatch,
-  IScreeningsListMappedState,
+  ScreeningsListProps
 } from "./types";
 import { selectAllScreenings } from "redux/screenings/selectors";
 import { fetchScreeningsStart } from "redux/screenings/actions";
@@ -25,7 +24,7 @@ const ScreeningList = ({
   screenings,
   fetchScreeningsStart,
   isDataLoaded
-}: IScreeningsListMappedDispatch & IScreeningsListMappedState) => {
+}: ScreeningsListProps) => {
   useEffect(() => {
     if (!isDataLoaded) { fetchScreeningsStart() };
   }, [fetchScreeningsStart, isDataLoaded]);

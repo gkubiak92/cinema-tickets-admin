@@ -11,3 +11,5 @@ export interface IHallsListMappedState {
   halls: IHall[];
   isDataLoaded: boolean;
 }
+
+export type IHallsListProps = IHallsListMappedState & IHallsListMappedDispatch;

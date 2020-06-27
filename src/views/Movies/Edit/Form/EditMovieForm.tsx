@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  IEditMovieFormProps,
-  IEditMovieFormMappedDispatch,
-  IEditMovieFormMappedState,
+  IEditMovieFormProps
 } from "./types";
 import { Form } from "react-final-form";
 import { Button, Snackbar, Grid } from "@material-ui/core";
@@ -18,9 +16,7 @@ const EditMovieForm = ({
   movie,
   addMovieStart,
   message,
-}: IEditMovieFormProps &
-  IEditMovieFormMappedDispatch &
-  IEditMovieFormMappedState) => {
+}: IEditMovieFormProps) => {
   const rootClasses = useRootStyles();
 
   const onSubmit = (values: IMovie) => addMovieStart(values);

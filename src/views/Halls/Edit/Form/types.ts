@@ -8,3 +8,5 @@ export interface IEditHallFormMappedDispatch {
 export interface IEditHallFormMappedState {
   editHallData: IEditHallFormData;
 }
+
+export type IEditHallFormProps = IEditHallFormMappedDispatch & IEditHallFormMappedState;

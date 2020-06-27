@@ -1,5 +1,5 @@
 import React from "react";
-import { ISeatArrangementProps, ISeatArrangementMappedState } from "./types";
+import { Props } from "./types";
 import { Grid, Avatar } from "@material-ui/core";
 import { IRootState } from "redux/types";
 import { selectHallSeatArrangement } from "redux/halls/selectors";
@@ -9,7 +9,7 @@ import { selectSeatsToEdit } from "redux/hall/selectors";
 
 const SeatArrangement = ({
   seatArrangement,
-}: ISeatArrangementProps & ISeatArrangementMappedState) => {
+}: Props) => {
   return seatArrangement ? (
     <Grid container spacing={2}>
       {Object.entries(seatArrangement).map((row) => (
@@ -22,13 +22,13 @@ const SeatArrangement = ({
       ))}
     </Grid>
   ) : (
-    <Grid container></Grid>
-  );
+      <Grid container></Grid>
+    );
 };
 
 const mapStateToProps = (
   state: IRootState,
-  ownProps: ISeatArrangementProps
+  ownProps: Props
 ) => ({
   seatArrangement: ownProps.edit
     ? selectSeatsToEdit(state)

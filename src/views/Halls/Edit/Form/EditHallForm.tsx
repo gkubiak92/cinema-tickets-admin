@@ -4,7 +4,7 @@ import { Grid, Button } from "@material-ui/core";
 import { TextField } from "mui-rff";
 import { IEditHallFormData } from "../types";
 import { connect } from "react-redux";
-import { IEditHallFormMappedDispatch, IEditHallFormMappedState } from "./types";
+import { IEditHallFormProps } from "./types";
 import { useRootStyles } from "App.styles";
 import { IRootState } from "redux/types";
 import { selectHallToEditData } from "redux/hall/selectors";
@@ -13,7 +13,7 @@ import { setHallSeats } from "redux/hall/actions";
 const EditHallForm = ({
   setHallSeats,
   editHallData,
-}: IEditHallFormMappedDispatch & IEditHallFormMappedState) => {
+}: IEditHallFormProps) => {
   const rootClasses = useRootStyles();
   const onSubmit = (values: IEditHallFormData) => {
     setHallSeats(values);

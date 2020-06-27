@@ -1,7 +1,6 @@
 import React from "react";
 import {
-  IEditScreeningFormProps,
-  IEditScreeningFormMappedDispatch,
+  Props,
 } from "./types";
 import { IScreening } from "api/types";
 import { addScreeningStart } from "redux/screenings/actions";
@@ -14,7 +13,7 @@ import { useRootStyles } from "App.styles";
 const EditScreeningForm = ({
   screening,
   addScreeningStart,
-}: IEditScreeningFormProps & IEditScreeningFormMappedDispatch) => {
+}: Props) => {
   const rootClasses = useRootStyles();
   const onSubmit = (values: IScreening) => addScreeningStart(values);
   return (
