@@ -1,15 +1,15 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import {
-  fetchScreeningsFailureAction,
-  fetchScreeningsSuccessAction,
-  addScreeningFailureAction,
-  addScreeningSuccessAction,
+  fetchScreeningsFailure,
+  fetchScreeningsSuccess,
+  addScreeningFailure,
+  addScreeningSuccess,
 } from "./actions";
 import {
   firestore,
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
-import { ScreeningsActionNames, IAddScreeningStart } from "./types";
+import { ScreeningsActionNames, IAddScreeningStartAction } from "./types";
 
 function* fetchScreeningsStart() {
   yield takeLatest(
@@ -25,9 +25,9 @@ function* fetchScreeningsAsync() {
     const screeningsArray = yield convertFirestoreCollectionToArray(
       screeningsCollectionSnapshot
     );
-    yield put(fetchScreeningsSuccessAction(screeningsArray));
+    yield put(fetchScreeningsSuccess(screeningsArray));
   } catch (error) {
-    yield put(fetchScreeningsFailureAction(error));
+    yield put(fetchScreeningsFailure(error));
   }
 }
 
@@ -38,15 +38,15 @@ function* addScreeningStart() {
   );
 }
 
-function* addScreeningAsync({ payload }: IAddScreeningStart) {
+function* addScreeningAsync({ payload }: IAddScreeningStartAction) {
   try {
     const newScreeningDocRef = payload.id
       ? firestore.collection("screenings").doc(payload.id)
       : firestore.collection("screenings").doc();
     yield newScreeningDocRef.set({ ...payload });
-    yield put(addScreeningSuccessAction("Saved screening successfully"));
+    yield put(addScreeningSuccess("Saved screening successfully"));
   } catch (error) {
-    yield put(addScreeningFailureAction(error));
+    yield put(addScreeningFailure(error));
   }
 }
 

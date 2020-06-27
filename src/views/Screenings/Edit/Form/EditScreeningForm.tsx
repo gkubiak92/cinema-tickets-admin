@@ -1,11 +1,10 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import {
   IEditScreeningFormProps,
   IEditScreeningFormMappedDispatch,
 } from "./types";
 import { IScreening } from "api/types";
-import { addScreeningStartAction } from "redux/screenings/actions";
-import { ScreeningsActionTypes } from "redux/screenings/types";
+import { addScreeningStart } from "redux/screenings/actions";
 import { connect } from "react-redux";
 import { Form } from "react-final-form";
 import FormFields from "./FormFields";
@@ -14,16 +13,16 @@ import { useRootStyles } from "App.styles";
 
 const EditScreeningForm = ({
   screening,
-  addScreening,
+  addScreeningStart,
 }: IEditScreeningFormProps & IEditScreeningFormMappedDispatch) => {
   const rootClasses = useRootStyles();
-  const onSubmit = (values: IScreening) => addScreening(values);
+  const onSubmit = (values: IScreening) => addScreeningStart(values);
   return (
     <>
       <Form
         initialValues={{ ...screening }}
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => {
+        render={({ handleSubmit }) => {
           return (
             <form onSubmit={handleSubmit} noValidate>
               <FormFields />
@@ -43,9 +42,6 @@ const EditScreeningForm = ({
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ScreeningsActionTypes>) => ({
-  addScreening: (screening: IScreening) =>
-    dispatch(addScreeningStartAction(screening)),
-});
+const mapDispatchToProps = { addScreeningStart };
 
 export default connect(null, mapDispatchToProps)(EditScreeningForm);

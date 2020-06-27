@@ -9,12 +9,12 @@ export enum HallActionsNames {
   ADD_HALL_FAILURE = "ADD_HALL_FAILURE",
 }
 
-export interface ISetHallToEdit {
+export interface ISetHallToEditAction {
   type: HallActionsNames.SET_HALL_TO_EDIT;
   payload: IHall;
 }
 
-export interface ISetHallSeats {
+export interface ISetHallSeatsAction {
   type: HallActionsNames.SET_HALL_SEATS;
   payload: IEditHallFormData;
 }
@@ -35,8 +35,8 @@ export interface IAddHallFailureAction {
 }
 
 export type HallActionsTypes =
-  | ISetHallToEdit
-  | ISetHallSeats
+  | ISetHallToEditAction
+  | ISetHallSeatsAction
   | IAddHallStartAction
   | IAddHallSuccessAction
   | IAddHallFailureAction;

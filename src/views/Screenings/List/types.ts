@@ -1,7 +1,8 @@
 import { IScreening } from "api/types";
+import { fetchScreeningsStart } from "redux/screenings/actions";
 
 export interface IScreeningsListMappedDispatch {
-  fetchScreeningsStart: () => void;
+  fetchScreeningsStart: typeof fetchScreeningsStart;
 }
 
 export interface IScreeningsListMappedState {

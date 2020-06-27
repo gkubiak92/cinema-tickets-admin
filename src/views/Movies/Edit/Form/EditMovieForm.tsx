@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import {
   IEditMovieFormProps,
   IEditMovieFormMappedDispatch,
@@ -7,8 +7,7 @@ import {
 import { Form } from "react-final-form";
 import { Button, Snackbar, Grid } from "@material-ui/core";
 import { useRootStyles } from "App.styles";
-import { MoviesActionTypes } from "redux/movies/types";
-import { addMovieStartAction } from "redux/movies/actions";
+import { addMovieStart } from "redux/movies/actions";
 import { IMovie } from "api/types";
 import { connect } from "react-redux";
 import { selectMessage } from "redux/movies/selectors";
@@ -17,14 +16,14 @@ import formFields from "./FormFields";
 
 const EditMovieForm = ({
   movie,
-  addMovie,
+  addMovieStart,
   message,
 }: IEditMovieFormProps &
   IEditMovieFormMappedDispatch &
   IEditMovieFormMappedState) => {
   const rootClasses = useRootStyles();
 
-  const onSubmit = (values: IMovie) => addMovie(values);
+  const onSubmit = (values: IMovie) => addMovieStart(values);
 
   return (
     <>
@@ -62,8 +61,8 @@ const mapStateToProps = (state: IRootState) => ({
   message: selectMessage(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<MoviesActionTypes>) => ({
-  addMovie: (movie: IMovie) => dispatch(addMovieStartAction(movie)),
-});
+const mapDispatchToProps = {
+  addMovieStart,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditMovieForm);

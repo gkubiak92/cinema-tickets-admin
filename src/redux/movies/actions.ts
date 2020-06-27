@@ -12,58 +12,50 @@ import {
 } from "./types";
 import { IMovie } from "api/types";
 
-export const fetchMoviesStartAction = (): IFetchMoviesStartAction => ({
+export const fetchMoviesStart = (): IFetchMoviesStartAction => ({
   type: MoviesActionNames.FETCH_MOVIES_START,
 });
 
-export const fetchMoviesSuccessAction = (
+export const fetchMoviesSuccess = (
   movies: IMovie[]
 ): IFetchMoviesSuccessAction => ({
   type: MoviesActionNames.FETCH_MOVIES_SUCCESS,
   payload: movies,
 });
 
-export const fetchMoviesFailureAction = (
+export const fetchMoviesFailure = (
   error: string
 ): IFetchMoviesFailureAction => ({
   type: MoviesActionNames.FETCH_MOVIES_FAILURE,
   payload: error,
 });
 
-export const addMovieStartAction = (movie: IMovie): IAddMovieStartAction => ({
+export const addMovieStart = (movie: IMovie): IAddMovieStartAction => ({
   type: MoviesActionNames.ADD_MOVIE_START,
   payload: movie,
 });
 
-export const addMovieSuccessAction = (
-  message: string
-): IAddMovieSuccessAction => ({
+export const addMovieSuccess = (message: string): IAddMovieSuccessAction => ({
   type: MoviesActionNames.ADD_MOVIE_SUCCESS,
   payload: message,
 });
 
-export const addMovieFailureAction = (
-  error: string
-): IAddMovieFailureAction => ({
+export const addMovieFailure = (error: string): IAddMovieFailureAction => ({
   type: MoviesActionNames.ADD_MOVIE_FAILURE,
   payload: error,
 });
 
-export const deleteMovieStartAction = (
-  id: string
-): IDeleteMovieStartAction => ({
+export const deleteMovieStart = (id: string): IDeleteMovieStartAction => ({
   type: MoviesActionNames.DELETE_MOVIE_START,
   payload: id,
 });
 
-export const deleteMovieSuccessAction = (
-  id: string
-): IDeleteMovieSuccessAction => ({
+export const deleteMovieSuccess = (id: string): IDeleteMovieSuccessAction => ({
   type: MoviesActionNames.DELETE_MOVIE_SUCCESS,
   payload: id,
 });
 
-export const deleteMovieFailureAction = (
+export const deleteMovieFailure = (
   error: string
 ): IDeleteMovieFailureAction => ({
   type: MoviesActionNames.DELETE_MOVIE_FAILURE,

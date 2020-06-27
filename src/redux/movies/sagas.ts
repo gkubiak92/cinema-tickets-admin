@@ -5,12 +5,12 @@ import {
   IDeleteMovieStartAction,
 } from "./types";
 import {
-  fetchMoviesFailureAction,
-  fetchMoviesSuccessAction,
-  addMovieFailureAction,
-  addMovieSuccessAction,
-  deleteMovieFailureAction,
-  deleteMovieSuccessAction,
+  fetchMoviesFailure,
+  fetchMoviesSuccess,
+  addMovieFailure,
+  addMovieSuccess,
+  deleteMovieFailure,
+  deleteMovieSuccess,
 } from "./actions";
 import {
   firestore,
@@ -26,9 +26,9 @@ function* fetchMoviesAsync() {
     const moviesCollectionRef = firestore.collection("movies");
     const moviesSnapshot = yield moviesCollectionRef.get();
     const moviesArray = convertFirestoreCollectionToArray(moviesSnapshot);
-    yield put(fetchMoviesSuccessAction(moviesArray));
+    yield put(fetchMoviesSuccess(moviesArray));
   } catch (error) {
-    yield put(fetchMoviesFailureAction(error));
+    yield put(fetchMoviesFailure(error));
   }
 }
 
@@ -42,9 +42,9 @@ function* addMovieAsync({ payload }: IAddMovieStartAction) {
       ? firestore.collection("movies").doc(payload.id)
       : firestore.collection("movies").doc();
     yield newMovieRef.set({ ...payload });
-    yield put(addMovieSuccessAction("Saved successfully"));
+    yield put(addMovieSuccess("Saved successfully"));
   } catch (error) {
-    yield put(addMovieFailureAction(error));
+    yield put(addMovieFailure(error));
   }
 }
 
@@ -55,9 +55,9 @@ function* deleteMovieStart() {
 function* deleteMovieAsync({ payload }: IDeleteMovieStartAction) {
   try {
     yield firestore.collection("movies").doc(payload).delete();
-    yield put(deleteMovieSuccessAction(payload));
+    yield put(deleteMovieSuccess(payload));
   } catch (error) {
-    yield put(deleteMovieFailureAction(error));
+    yield put(deleteMovieFailure(error));
   }
 }
 

@@ -1,23 +1,23 @@
 import {
   HallsActionNames,
-  IFetchHallsStart,
-  IFetchHallsSuccess,
-  IFetchHallsFailure,
+  IFetchHallsStartAction,
+  IFetchHallsSuccessAction,
+  IFetchHallsFailureAction,
 } from "./types";
 import { IHall } from "api/types";
 
-export const fetchHallsStartAction = (): IFetchHallsStart => ({
+export const fetchHallsStart = (): IFetchHallsStartAction => ({
   type: HallsActionNames.FETCH_HALLS_START,
 });
 
-export const fetchHallsSuccessAction = (
+export const fetchHallsSuccess = (
   halls: IHall[]
-): IFetchHallsSuccess => ({
+): IFetchHallsSuccessAction => ({
   type: HallsActionNames.FETCH_HALLS_SUCCESS,
   payload: halls,
 });
 
-export const fetchHallsFailureAction = (error: string): IFetchHallsFailure => ({
+export const fetchHallsFailure = (error: string): IFetchHallsFailureAction => ({
   type: HallsActionNames.FETCH_HALLS_FAILURE,
   payload: error,
 });

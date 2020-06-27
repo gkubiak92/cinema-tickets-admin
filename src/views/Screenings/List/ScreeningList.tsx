@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   TableContainer,
@@ -12,14 +12,13 @@ import {
 import { Add } from "@material-ui/icons";
 import { Link, useHistory } from "react-router-dom";
 import { useRootStyles } from "App.styles";
-import { ScreeningsActionTypes } from "redux/screenings/types";
-import { fetchScreeningsStartAction } from "redux/screenings/actions";
 import { IRootState } from "redux/types";
 import {
   IScreeningsListMappedDispatch,
   IScreeningsListMappedState,
 } from "./types";
 import { selectAllScreenings } from "redux/screenings/selectors";
+import { fetchScreeningsStart } from "redux/screenings/actions";
 import { connect } from "react-redux";
 
 const ScreeningList = ({
@@ -84,8 +83,6 @@ const mapStateToProps = (state: IRootState) => ({
   screenings: selectAllScreenings(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<ScreeningsActionTypes>) => ({
-  fetchScreeningsStart: () => dispatch(fetchScreeningsStartAction()),
-});
+const mapDispatchToProps = { fetchScreeningsStart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScreeningList);

@@ -1,15 +1,14 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import { Form } from "react-final-form";
 import { Grid, Button } from "@material-ui/core";
 import { TextField } from "mui-rff";
-import { HallActionsTypes } from "redux/hall/types";
-import { setHallSeatsAction } from "redux/hall/actions";
 import { IEditHallFormData } from "../types";
 import { connect } from "react-redux";
 import { IEditHallFormMappedDispatch, IEditHallFormMappedState } from "./types";
 import { useRootStyles } from "App.styles";
 import { IRootState } from "redux/types";
 import { selectHallToEditData } from "redux/hall/selectors";
+import { setHallSeats } from "redux/hall/actions";
 
 const EditHallForm = ({
   setHallSeats,
@@ -60,9 +59,8 @@ const mapStateToProps = (state: IRootState) => ({
   editHallData: selectHallToEditData(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<HallActionsTypes>) => ({
-  setHallSeats: (hallData: IEditHallFormData) =>
-    dispatch(setHallSeatsAction(hallData)),
-});
+const mapDispatchToProps = {
+  setHallSeats,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditHallForm);

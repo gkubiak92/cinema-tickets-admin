@@ -1,9 +1,5 @@
-import React, { useEffect, Dispatch, useState } from "react";
-import { MoviesActionTypes } from "redux/movies/types";
-import {
-  fetchMoviesStartAction,
-  deleteMovieStartAction,
-} from "redux/movies/actions";
+import React, { useEffect, useState } from "react";
+import { fetchMoviesStart, deleteMovieStart } from "redux/movies/actions";
 import { connect } from "react-redux";
 import { IMoviesListMappedDispatch, IMoviesListMappedState } from "./types";
 import {
@@ -122,9 +118,9 @@ const mapStateToProps = (state: IRootState) => ({
   movies: selectAllMovies(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<MoviesActionTypes>) => ({
-  fetchMoviesStart: () => dispatch(fetchMoviesStartAction()),
-  deleteMovieStart: (id: string) => dispatch(deleteMovieStartAction(id)),
-});
+const mapDispatchToProps = {
+  fetchMoviesStart,
+  deleteMovieStart,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

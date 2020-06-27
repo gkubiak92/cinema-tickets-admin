@@ -6,24 +6,24 @@ export enum HallsActionNames {
   FETCH_HALLS_FAILURE = "FETCH_HALLS_FAILURE",
 }
 
-export interface IFetchHallsStart {
+export interface IFetchHallsStartAction {
   type: typeof HallsActionNames.FETCH_HALLS_START;
 }
 
-export interface IFetchHallsSuccess {
+export interface IFetchHallsSuccessAction {
   type: typeof HallsActionNames.FETCH_HALLS_SUCCESS;
   payload: IHall[];
 }
 
-export interface IFetchHallsFailure {
+export interface IFetchHallsFailureAction {
   type: typeof HallsActionNames.FETCH_HALLS_FAILURE;
   payload: string;
 }
 
 export type HallsActionTypes =
-  | IFetchHallsStart
-  | IFetchHallsSuccess
-  | IFetchHallsFailure;
+  | IFetchHallsStartAction
+  | IFetchHallsSuccessAction
+  | IFetchHallsFailureAction;
 
 export interface IHallsState {
   halls: IHall[];

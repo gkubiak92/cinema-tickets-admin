@@ -1,11 +1,12 @@
 import { IMovie } from "api/types";
+import { addMovieStart } from "redux/movies/actions";
 
 export interface IEditMovieFormProps {
   movie: IMovie;
 }
 
 export interface IEditMovieFormMappedDispatch {
-  addMovie: (movie: IMovie) => void;
+  addMovieStart: typeof addMovieStart;
 }
 
 export interface IEditMovieFormMappedState {

@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect } from "react";
+import React, { useEffect } from "react";
 import { IScreening } from "api/types";
 import { RouteComponentProps } from "react-router-dom";
 import {
@@ -10,10 +10,8 @@ import EditScreeningForm from "./Form/EditScreeningForm";
 import { selectScreening } from "redux/screenings/selectors";
 import { IRootState } from "redux/types";
 import { connect } from "react-redux";
-import { MoviesActionTypes } from "redux/movies/types";
-import { HallsActionTypes } from "redux/halls/types";
-import { fetchMoviesStartAction } from "redux/movies/actions";
-import { fetchHallsStartAction } from "redux/halls/actions";
+import { fetchMoviesStart } from "redux/movies/actions";
+import { fetchHallsStart } from "redux/halls/actions";
 import SeatArrangement from "components/SeatArrangement/SeatArrangement";
 
 const initialScreeningData: IScreening = {
@@ -57,11 +55,9 @@ const mapStateToProps = (
   screening: selectScreening(ownProps.match.params.id)(state),
 });
 
-const mapDispatchToProps = (
-  dispatch: Dispatch<MoviesActionTypes | HallsActionTypes>
-) => ({
-  fetchMoviesStart: () => dispatch(fetchMoviesStartAction()),
-  fetchHallsStart: () => dispatch(fetchHallsStartAction()),
-});
+const mapDispatchToProps = {
+  fetchMoviesStart,
+  fetchHallsStart,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditScreening);

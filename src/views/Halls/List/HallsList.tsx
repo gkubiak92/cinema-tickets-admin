@@ -1,6 +1,5 @@
-import React, { useEffect, Dispatch } from "react";
-import { HallsActionTypes } from "redux/halls/types";
-import { fetchHallsStartAction } from "redux/halls/actions";
+import React, { useEffect } from "react";
+import { fetchHallsStart } from "redux/halls/actions";
 import { connect } from "react-redux";
 import { IHallsListMappedDispatch, IHallsListMappedState } from "./types";
 import { Add } from "@material-ui/icons";
@@ -20,7 +19,6 @@ import { selectAllHalls } from "redux/halls/selectors";
 import { useRootStyles } from "App.styles";
 import { IHall } from "api/types";
 import { setHallToEdit } from "redux/hall/actions";
-import { HallActionsTypes } from "redux/hall/types";
 
 const HallsList = ({
   fetchHallsStart,
@@ -80,11 +78,9 @@ const mapStateToProps = (state: IRootState) => ({
   halls: selectAllHalls(state),
 });
 
-const mapDispatchToProps = (
-  dispatch: Dispatch<HallsActionTypes | HallActionsTypes>
-) => ({
-  fetchHallsStart: () => dispatch(fetchHallsStartAction()),
-  setHallToEdit: (hall: IHall) => dispatch(setHallToEdit(hall)),
-});
+const mapDispatchToProps = {
+  fetchHallsStart,
+  setHallToEdit,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HallsList);
