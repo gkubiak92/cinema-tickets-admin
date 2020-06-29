@@ -1,12 +1,13 @@
 import { IEditHallFormData } from "../types";
-import { setHallSeats } from "redux/hall/actions";
+import { setHallData, addHallStart } from "redux/hall/actions";
 
 export interface IEditHallFormMappedDispatch {
-  setHallSeats: typeof setHallSeats;
+  setHallSeats: typeof setHallData;
 }
 
 export interface IEditHallFormMappedState {
   editHallData: IEditHallFormData;
 }
 
-export type IEditHallFormProps = IEditHallFormMappedDispatch & IEditHallFormMappedState;
+export type IEditHallFormProps = IEditHallFormMappedDispatch &
+  IEditHallFormMappedState;

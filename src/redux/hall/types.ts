@@ -3,7 +3,7 @@ import { IEditHallFormData } from "views/Halls/Edit/types";
 
 export enum HallActionsNames {
   SET_HALL_TO_EDIT = "SET_HALL_TO_EDIT",
-  SET_HALL_SEATS = "SET_HALL_SEATS",
+  SET_HALL_DATA = "SET_HALL_DATA",
   ADD_HALL_START = "ADD_HALL_START",
   ADD_HALL_SUCCESS = "ADD_HALL_SUCCESS",
   ADD_HALL_FAILURE = "ADD_HALL_FAILURE",
@@ -14,8 +14,8 @@ export interface ISetHallToEditAction {
   payload: IHall;
 }
 
-export interface ISetHallSeatsAction {
-  type: HallActionsNames.SET_HALL_SEATS;
+export interface ISetHallDataAction {
+  type: HallActionsNames.SET_HALL_DATA;
   payload: IEditHallFormData;
 }
 
@@ -36,7 +36,7 @@ export interface IAddHallFailureAction {
 
 export type HallActionsTypes =
   | ISetHallToEditAction
-  | ISetHallSeatsAction
+  | ISetHallDataAction
   | IAddHallStartAction
   | IAddHallSuccessAction
   | IAddHallFailureAction;

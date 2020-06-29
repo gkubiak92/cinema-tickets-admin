@@ -1,3 +1,10 @@
+export enum FirestoreCollections {
+  halls = "hallsArrangement",
+  movies = "movies",
+  moviesToHalls = "moviesToHalls",
+  screenings = "screenings",
+}
+
 export interface IMovie {
   description: string;
   director: string;
@@ -34,6 +41,7 @@ export interface ISeatArrangement {
 }
 
 export interface ISeat {
+  seatIndex: string;
   disabled: boolean;
 }
 

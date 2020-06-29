@@ -23,14 +23,7 @@ export const selectHallSeatArrangement = (hallId: string) =>
   createSelector(selectHalls, ({ halls }) => {
     const hall = halls.find((hall) => hall.id === hallId);
     if (hall) {
-      const unorderedObject = hall.seatArrangement;
-      const orderedObject: any = {};
-      Object.keys(unorderedObject)
-        .sort()
-        .forEach((key) => {
-          orderedObject[key] = unorderedObject[key];
-        });
-      return orderedObject;
+      return hall.seatArrangement;
     }
     return undefined;
   });

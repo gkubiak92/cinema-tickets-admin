@@ -1,4 +1,5 @@
-import { ISeatArrangement } from "api/types";
+import { ISeatArrangement, IHall } from "api/types";
+import { addHallStart } from "redux/hall/actions";
 
 export interface IEditHallFormData {
   id: string;
@@ -6,3 +7,13 @@ export interface IEditHallFormData {
   rows: number;
   seatsPerRow: number;
 }
+
+export interface IEditHallMappedState {
+  hall: IHall;
+}
+
+export interface IEditHallMappedDispatch {
+  addHallStart: typeof addHallStart;
+}
+
+export type IEditHallProps = IEditHallMappedState & IEditHallMappedDispatch;

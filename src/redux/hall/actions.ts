@@ -2,7 +2,7 @@ import { IHall } from "api/types";
 import {
   HallActionsNames,
   ISetHallToEditAction,
-  ISetHallSeatsAction,
+  ISetHallDataAction,
   IAddHallStartAction,
   IAddHallSuccessAction,
   IAddHallFailureAction,
@@ -14,10 +14,10 @@ export const setHallToEdit = (hall: IHall): ISetHallToEditAction => ({
   payload: hall,
 });
 
-export const setHallSeats = (
+export const setHallData = (
   hallData: IEditHallFormData
-): ISetHallSeatsAction => ({
-  type: HallActionsNames.SET_HALL_SEATS,
+): ISetHallDataAction => ({
+  type: HallActionsNames.SET_HALL_DATA,
   payload: hallData,
 });
 

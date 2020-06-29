@@ -8,12 +8,9 @@ import { IEditHallFormProps } from "./types";
 import { useRootStyles } from "App.styles";
 import { IRootState } from "redux/types";
 import { selectHallToEditData } from "redux/hall/selectors";
-import { setHallSeats } from "redux/hall/actions";
+import { setHallData } from "redux/hall/actions";
 
-const EditHallForm = ({
-  setHallSeats,
-  editHallData,
-}: IEditHallFormProps) => {
+const EditHallForm = ({ setHallSeats, editHallData }: IEditHallFormProps) => {
   const rootClasses = useRootStyles();
   const onSubmit = (values: IEditHallFormData) => {
     setHallSeats(values);
@@ -60,7 +57,7 @@ const mapStateToProps = (state: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  setHallSeats,
+  setHallSeats: setHallData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditHallForm);

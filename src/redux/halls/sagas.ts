@@ -5,6 +5,7 @@ import {
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
 import { fetchHallsFailure, fetchHallsSuccess } from "./actions";
+import { FirestoreCollections } from "api/types";
 
 function* fetchHallsStart() {
   yield takeLatest(HallsActionNames.FETCH_HALLS_START, fetchHallsAsync);
@@ -12,7 +13,7 @@ function* fetchHallsStart() {
 
 function* fetchHallsAsync() {
   try {
-    const hallsCollectionRef = firestore.collection("hallsArrangement");
+    const hallsCollectionRef = firestore.collection(FirestoreCollections.halls);
     const hallsCollectionSnapshot = yield hallsCollectionRef.get();
     const halls = yield convertFirestoreCollectionToArray(
       hallsCollectionSnapshot

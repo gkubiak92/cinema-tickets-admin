@@ -18,9 +18,12 @@ const hallReducer = (state = INITIAL_STATE, action: HallActionsTypes) => {
         name: action.payload.name,
         seatArrangement: action.payload.seatArrangement,
       };
-    case HallActionsNames.SET_HALL_SEATS:
+    case HallActionsNames.SET_HALL_DATA:
+      const { id, name } = action.payload;
       return {
         ...state,
+        id,
+        name,
         seatArrangement: getSeatArrangementFromSeatsMap(action.payload),
       };
     case HallActionsNames.ADD_HALL_SUCCESS:
