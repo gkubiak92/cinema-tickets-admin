@@ -1,5 +1,5 @@
 import { IEditHallFormData } from "../types";
-import { setHallData, addHallStart } from "redux/hall/actions";
+import { setHallData } from "redux/hall/actions";
 
 export interface IEditHallFormMappedDispatch {
   setHallSeats: typeof setHallData;

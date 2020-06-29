@@ -10,6 +10,7 @@ import {
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
 import { ScreeningsActionNames, IAddScreeningStartAction } from "./types";
+import { FirestoreCollections } from "api/types";
 
 function* fetchScreeningsStart() {
   yield takeLatest(
@@ -20,7 +21,9 @@ function* fetchScreeningsStart() {
 
 function* fetchScreeningsAsync() {
   try {
-    const screeningsCollectionRef = firestore.collection("screenings");
+    const screeningsCollectionRef = firestore.collection(
+      FirestoreCollections.screenings
+    );
     const screeningsCollectionSnapshot = yield screeningsCollectionRef.get();
     const screeningsArray = yield convertFirestoreCollectionToArray(
       screeningsCollectionSnapshot
@@ -41,8 +44,8 @@ function* addScreeningStart() {
 function* addScreeningAsync({ payload }: IAddScreeningStartAction) {
   try {
     const newScreeningDocRef = payload.id
-      ? firestore.collection("screenings").doc(payload.id)
-      : firestore.collection("screenings").doc();
+      ? firestore.collection(FirestoreCollections.screenings).doc(payload.id)
+      : firestore.collection(FirestoreCollections.screenings).doc();
     yield newScreeningDocRef.set({ ...payload });
     yield put(addScreeningSuccess("Saved screening successfully"));
   } catch (error) {

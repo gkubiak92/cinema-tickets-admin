@@ -16,6 +16,7 @@ import {
   firestore,
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
+import { FirestoreCollections } from "api/types";
 
 function* fetchMoviesStart() {
   yield takeLatest(MoviesActionNames.FETCH_MOVIES_START, fetchMoviesAsync);
@@ -23,7 +24,9 @@ function* fetchMoviesStart() {
 
 function* fetchMoviesAsync() {
   try {
-    const moviesCollectionRef = firestore.collection("movies");
+    const moviesCollectionRef = firestore.collection(
+      FirestoreCollections.movies
+    );
     const moviesSnapshot = yield moviesCollectionRef.get();
     const moviesArray = convertFirestoreCollectionToArray(moviesSnapshot);
     yield put(fetchMoviesSuccess(moviesArray));
@@ -39,8 +42,8 @@ function* addMovieStart() {
 function* addMovieAsync({ payload }: IAddMovieStartAction) {
   try {
     const newMovieRef = payload.id
-      ? firestore.collection("movies").doc(payload.id)
-      : firestore.collection("movies").doc();
+      ? firestore.collection(FirestoreCollections.movies).doc(payload.id)
+      : firestore.collection(FirestoreCollections.movies).doc();
     yield newMovieRef.set({ ...payload });
     yield put(addMovieSuccess("Saved successfully"));
   } catch (error) {
