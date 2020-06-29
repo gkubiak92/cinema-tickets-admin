@@ -1,5 +1,6 @@
 import { IEditHallFormData } from "views/Halls/Edit/types";
 import { ISeat, ISeatArrangement } from "api/types";
+import { IToggleSeat } from "./types";
 
 const nextChar = (char: string) => String.fromCharCode(char.charCodeAt(0) + 1);
 
@@ -24,4 +25,15 @@ export const getSeatArrangementFromSeatsMap = (hallData: IEditHallFormData) => {
   }
 
   return seatArrangement;
+};
+
+export const toggleSeat = (
+  seat: IToggleSeat,
+  seatArrangement: ISeatArrangement
+) => {
+  const newObj = { ...seatArrangement };
+  const { row, index } = seat;
+  const disabled = newObj[row][index].disabled;
+  newObj[row][index].disabled = !disabled;
+  return newObj;
 };

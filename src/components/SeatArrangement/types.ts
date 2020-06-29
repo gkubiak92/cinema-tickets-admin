@@ -1,10 +1,15 @@
 import { ISeatArrangement } from "api/types";
-
-export interface SeatArrangementProps {
-  hallId: string;
-  edit?: boolean;
-}
+import { toggleSeat } from "redux/hall/actions";
 
 export interface ISeatArrangementMappedState {
-  seatArrangement: ISeatArrangement | undefined;
+  seatArrangement?: ISeatArrangement | undefined;
 }
+
+export interface ISeatArrangementMappedDispatch {
+  toggleSeat: typeof toggleSeat;
+}
+
+export type SeatArrangementProps = {
+  hallId: string;
+  edit?: boolean;
+};

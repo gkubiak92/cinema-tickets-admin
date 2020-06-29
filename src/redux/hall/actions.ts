@@ -6,6 +6,8 @@ import {
   IAddHallStartAction,
   IAddHallSuccessAction,
   IAddHallFailureAction,
+  IToggleSeat,
+  IToggleSeatAction,
 } from "./types";
 import { IEditHallFormData } from "views/Halls/Edit/types";
 
@@ -34,4 +36,9 @@ export const addHallSuccess = (message: string): IAddHallSuccessAction => ({
 export const addHallFailure = (error: string): IAddHallFailureAction => ({
   type: HallActionsNames.ADD_HALL_FAILURE,
   payload: error,
+});
+
+export const toggleSeat = (seat: IToggleSeat): IToggleSeatAction => ({
+  type: HallActionsNames.TOGGLE_SEAT,
+  payload: seat,
 });

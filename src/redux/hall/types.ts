@@ -7,6 +7,7 @@ export enum HallActionsNames {
   ADD_HALL_START = "ADD_HALL_START",
   ADD_HALL_SUCCESS = "ADD_HALL_SUCCESS",
   ADD_HALL_FAILURE = "ADD_HALL_FAILURE",
+  TOGGLE_SEAT = "TOGGLE_SEAT",
 }
 
 export interface ISetHallToEditAction {
@@ -34,12 +35,23 @@ export interface IAddHallFailureAction {
   payload: string;
 }
 
+export interface IToggleSeat {
+  row: string;
+  index: number;
+}
+
+export interface IToggleSeatAction {
+  type: HallActionsNames.TOGGLE_SEAT;
+  payload: IToggleSeat;
+}
+
 export type HallActionsTypes =
   | ISetHallToEditAction
   | ISetHallDataAction
   | IAddHallStartAction
   | IAddHallSuccessAction
-  | IAddHallFailureAction;
+  | IAddHallFailureAction
+  | IToggleSeatAction;
 
 export interface IHallState extends IHall {
   error: string;

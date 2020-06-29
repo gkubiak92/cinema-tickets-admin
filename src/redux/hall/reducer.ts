@@ -1,5 +1,5 @@
 import { IHallState, HallActionsTypes, HallActionsNames } from "./types";
-import { getSeatArrangementFromSeatsMap } from "./utils";
+import { getSeatArrangementFromSeatsMap, toggleSeat } from "./utils";
 
 const INITIAL_STATE: IHallState = {
   id: "",
@@ -31,6 +31,11 @@ const hallReducer = (state = INITIAL_STATE, action: HallActionsTypes) => {
         ...state,
         error: "",
         message: action.payload,
+      };
+    case HallActionsNames.TOGGLE_SEAT:
+      return {
+        ...state,
+        seatArrangement: toggleSeat(action.payload, state.seatArrangement),
       };
 
     default:
