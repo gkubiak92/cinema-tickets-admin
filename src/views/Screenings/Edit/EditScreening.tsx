@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
 import { IScreening } from "api/types";
-import {
-  EditScreeningProps,
-} from "./types";
+import { EditScreeningProps } from "./types";
 import EditScreeningForm from "./Form/EditScreeningForm";
 import { selectScreening } from "redux/screenings/selectors";
 import { IRootState } from "redux/types";
 import { connect } from "react-redux";
 import { fetchMoviesStart } from "redux/movies/actions";
 import { fetchHallsStart } from "redux/halls/actions";
-import SeatArrangement from "components/SeatArrangement/SeatArrangement";
 
 const initialScreeningData: IScreening = {
   dateAndHour: "",
@@ -38,15 +35,12 @@ const EditScreening = ({
   return (
     <div>
       <EditScreeningForm screening={screeningData} />
-      <SeatArrangement hallId={screeningData.hallId} />
+      {/* <SeatArrangement hallId={screeningData.hallId} /> */}
     </div>
   );
 };
 
-const mapStateToProps = (
-  state: IRootState,
-  ownProps: EditScreeningProps
-) => ({
+const mapStateToProps = (state: IRootState, ownProps: EditScreeningProps) => ({
   screening: selectScreening(ownProps.match.params.id)(state),
 });
 

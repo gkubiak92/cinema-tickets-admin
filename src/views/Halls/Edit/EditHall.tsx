@@ -7,9 +7,10 @@ import { connect } from "react-redux";
 import { IRootState } from "redux/types";
 import { IEditHallProps } from "./types";
 import { IHall } from "api/types";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
+import { selectIsHallDataSet } from "redux/hall/selectors";
 
-const EditHall = ({ hall, addHallStart }: IEditHallProps) => {
+const EditHall = ({ hall, isHallDataSet, addHallStart }: IEditHallProps) => {
   const { id } = useParams();
 
   const handleSubmit = (hall: IHall) => {
@@ -20,17 +21,29 @@ const EditHall = ({ hall, addHallStart }: IEditHallProps) => {
     };
     addHallStart(hallToAdd);
   };
+
+  const saveButton = isHallDataSet && (
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={() => handleSubmit(hall)}
+    >
+      Save
+    </Button>
+  );
+
   return (
-    <div>
+    <Grid container>
       <EditHallForm />
       <SeatArrangement hallId={id} edit />
-      <Button onClick={() => handleSubmit(hall)}>Save</Button>
-    </div>
+      {saveButton}
+    </Grid>
   );
 };
 
 const mapStateToProps = (state: IRootState) => ({
   hall: state.hall,
+  isHallDataSet: selectIsHallDataSet(state),
 });
 
 const mapDispatchToProps = {

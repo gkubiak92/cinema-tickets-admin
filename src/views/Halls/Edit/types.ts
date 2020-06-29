@@ -10,6 +10,7 @@ export interface IEditHallFormData {
 
 export interface IEditHallMappedState {
   hall: IHall;
+  isHallDataSet: boolean;
 }
 
 export interface IEditHallMappedDispatch {

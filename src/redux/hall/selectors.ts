@@ -21,3 +21,8 @@ export const selectHallToEditData = createSelector(
     };
   }
 );
+
+export const selectIsHallDataSet = createSelector(
+  selectHall,
+  ({ name, seatArrangement }) => (!!name && !!seatArrangement ? true : false)
+);
