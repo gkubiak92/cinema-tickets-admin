@@ -35,9 +35,9 @@ export const addMovieStart = (movie: IMovie): IAddMovieStartAction => ({
   payload: movie,
 });
 
-export const addMovieSuccess = (message: string): IAddMovieSuccessAction => ({
+export const addMovieSuccess = (movie: IMovie): IAddMovieSuccessAction => ({
   type: MoviesActionNames.ADD_MOVIE_SUCCESS,
-  payload: message,
+  payload: movie,
 });
 
 export const addMovieFailure = (error: string): IAddMovieFailureAction => ({

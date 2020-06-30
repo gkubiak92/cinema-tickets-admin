@@ -1,89 +1,44 @@
 import React, { useEffect } from "react";
-import {
-  Button,
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
-import { Link, useHistory } from "react-router-dom";
-import { useRootStyles } from "App.styles";
 import { IRootState } from "redux/types";
-import {
-  ScreeningsListProps
-} from "./types";
+import { ScreeningsListProps } from "./types";
 import { selectAllScreenings } from "redux/screenings/selectors";
-import { fetchScreeningsStart } from "redux/screenings/actions";
+import {
+  fetchScreeningsStart,
+  deleteScreeningStart,
+} from "redux/screenings/actions";
 import { connect } from "react-redux";
+import List from "components/List/List";
 
 const ScreeningList = ({
   screenings,
   fetchScreeningsStart,
-  isDataLoaded
+  deleteScreeningStart,
+  isDataLoaded,
 }: ScreeningsListProps) => {
   useEffect(() => {
-    if (!isDataLoaded) { fetchScreeningsStart() };
+    if (!isDataLoaded) {
+      fetchScreeningsStart();
+    }
   }, [fetchScreeningsStart, isDataLoaded]);
 
-  const rootClasses = useRootStyles();
-  const history = useHistory();
-  const handleRowClick = (id: string) => history.push(`/edit-screening/${id}`);
-
   return (
-    <>
-      <Button
-        className={rootClasses.crudButton}
-        variant="contained"
-        color="primary"
-        startIcon={<Add />}
-        component={Link}
-        to="/edit-screening"
-      >
-        Add
-      </Button>
-      <TableContainer component={Paper}>
-        <Table aria-label="Screenings list">
-          <TableHead>
-            <TableRow>
-              <TableCell>Id</TableCell>
-              <TableCell>Movie</TableCell>
-              <TableCell>Hall</TableCell>
-              <TableCell>Date and Hour</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {screenings.map((screening) => (
-              <TableRow key={screening.id}>
-                <TableCell onClick={() => handleRowClick(screening.id)}>
-                  {screening.id}
-                </TableCell>
-                <TableCell onClick={() => handleRowClick(screening.id)}>
-                  {screening.movieId}
-                </TableCell>
-                <TableCell onClick={() => handleRowClick(screening.id)}>
-                  {screening.hallId}
-                </TableCell>
-                <TableCell onClick={() => handleRowClick(screening.id)}>
-                  {screening.dateAndHour.toString()}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+    <List
+      collectionName="screenings"
+      collectionTitle="Screenings"
+      fieldsToDisplay={["id", "movieId", "hallId", "dateAndHour"]}
+      itemName="screening"
+      items={screenings}
+      onRefresh={fetchScreeningsStart}
+      onDeleteItem={deleteScreeningStart}
+    />
   );
 };
 
 const mapStateToProps = (state: IRootState) => ({
   screenings: selectAllScreenings(state),
-  isDataLoaded: state.screenings.isDataLoaded
+  isDataLoaded: state.screenings.isDataLoaded,
 });
 
-const mapDispatchToProps = { fetchScreeningsStart };
+const mapDispatchToProps = { fetchScreeningsStart, deleteScreeningStart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScreeningList);

@@ -33,7 +33,7 @@ export interface IAddMovieStartAction {
 
 export interface IAddMovieSuccessAction {
   type: typeof MoviesActionNames.ADD_MOVIE_SUCCESS;
-  payload: string;
+  payload: IMovie;
 }
 
 export interface IAddMovieFailureAction {

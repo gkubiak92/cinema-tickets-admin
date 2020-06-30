@@ -1,8 +1,12 @@
 import { IScreening } from "api/types";
-import { fetchScreeningsStart } from "redux/screenings/actions";
+import {
+  fetchScreeningsStart,
+  deleteScreeningStart,
+} from "redux/screenings/actions";
 
 export interface IScreeningsListMappedDispatch {
   fetchScreeningsStart: typeof fetchScreeningsStart;
+  deleteScreeningStart: typeof deleteScreeningStart;
 }
 
 export interface IScreeningsListMappedState {
@@ -10,4 +14,5 @@ export interface IScreeningsListMappedState {
   isDataLoaded: boolean;
 }
 
-export type ScreeningsListProps = IScreeningsListMappedDispatch & IScreeningsListMappedState
+export type ScreeningsListProps = IScreeningsListMappedDispatch &
+  IScreeningsListMappedState;

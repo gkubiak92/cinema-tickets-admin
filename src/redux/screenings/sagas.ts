@@ -4,12 +4,18 @@ import {
   fetchScreeningsSuccess,
   addScreeningFailure,
   addScreeningSuccess,
+  deleteScreeningFailure,
+  deleteScreeningSuccess,
 } from "./actions";
 import {
   firestore,
   convertFirestoreCollectionToArray,
 } from "firebase/firebase.utils";
-import { ScreeningsActionNames, IAddScreeningStartAction } from "./types";
+import {
+  ScreeningsActionNames,
+  IAddScreeningStartAction,
+  IDeleteScreeningStartAction,
+} from "./types";
 import { FirestoreCollections } from "api/types";
 
 function* fetchScreeningsStart() {
@@ -47,12 +53,35 @@ function* addScreeningAsync({ payload }: IAddScreeningStartAction) {
       ? firestore.collection(FirestoreCollections.screenings).doc(payload.id)
       : firestore.collection(FirestoreCollections.screenings).doc();
     yield newScreeningDocRef.set({ ...payload });
-    yield put(addScreeningSuccess("Saved screening successfully"));
+    yield put(addScreeningSuccess({ ...payload, id: newScreeningDocRef.id }));
   } catch (error) {
     yield put(addScreeningFailure(error));
   }
 }
 
+function* deleteScreeningStart() {
+  yield takeLatest(
+    ScreeningsActionNames.DELETE_SCREENING_START,
+    deleteScreeningAsync
+  );
+}
+
+function* deleteScreeningAsync({ payload }: IDeleteScreeningStartAction) {
+  try {
+    yield firestore
+      .collection(FirestoreCollections.screenings)
+      .doc(payload)
+      .delete();
+    yield put(deleteScreeningSuccess(payload));
+  } catch (error) {
+    yield put(deleteScreeningFailure(error));
+  }
+}
+
 export function* screeningsSagas() {
-  yield all([call(fetchScreeningsStart), call(addScreeningStart)]);
+  yield all([
+    call(fetchScreeningsStart),
+    call(addScreeningStart),
+    call(deleteScreeningStart),
+  ]);
 }
