@@ -5,8 +5,6 @@ const INITIAL_STATE: IHallState = {
   id: "",
   name: "",
   seatArrangement: {},
-  error: "",
-  message: "",
 };
 
 const hallReducer = (state = INITIAL_STATE, action: HallActionsTypes) => {
@@ -25,12 +23,6 @@ const hallReducer = (state = INITIAL_STATE, action: HallActionsTypes) => {
         id,
         name,
         seatArrangement: getSeatArrangementFromSeatsMap(action.payload),
-      };
-    case HallActionsNames.ADD_HALL_SUCCESS:
-      return {
-        ...state,
-        error: "",
-        message: action.payload,
       };
     case HallActionsNames.TOGGLE_SEAT:
       return {

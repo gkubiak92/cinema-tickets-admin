@@ -1,4 +1,5 @@
-import { IHallsState, HallsActionTypes, HallsActionNames } from "./types";
+import { IHallsState, HallsActionTypes, HallsActionsNames } from "./types";
+import { addItemToList, deleteItemFromList } from "redux/utils";
 
 const INITIAL_STATE: IHallsState = {
   halls: [],
@@ -9,23 +10,34 @@ const INITIAL_STATE: IHallsState = {
 
 const hallsReducer = (state = INITIAL_STATE, action: HallsActionTypes) => {
   switch (action.type) {
-    case HallsActionNames.FETCH_HALLS_START:
+    case HallsActionsNames.FETCH_HALLS_START:
       return {
         ...state,
         isFetching: true,
       };
-    case HallsActionNames.FETCH_HALLS_SUCCESS:
+    case HallsActionsNames.FETCH_HALLS_SUCCESS:
       return {
         ...state,
         halls: action.payload,
         isDataLoaded: true,
       };
-    case HallsActionNames.FETCH_HALLS_FAILURE:
+    case HallsActionsNames.FETCH_HALLS_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: action.payload,
         isDataLoaded: false,
+      };
+    case HallsActionsNames.ADD_HALL_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        halls: addItemToList(state.halls, action.payload),
+      };
+    case HallsActionsNames.DELETE_HALL_SUCCESS:
+      return {
+        ...state,
+        halls: deleteItemFromList(state.halls, action.payload),
       };
     default:
       return {

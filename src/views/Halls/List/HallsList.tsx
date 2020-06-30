@@ -2,27 +2,16 @@ import React, { useEffect } from "react";
 import { fetchHallsStart } from "redux/halls/actions";
 import { connect } from "react-redux";
 import { IHallsListProps } from "./types";
-import { Add } from "@material-ui/icons";
-import {
-  Button,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  Paper,
-  TableCell,
-  TableBody,
-} from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 import { IRootState } from "redux/types";
 import { selectAllHalls } from "redux/halls/selectors";
-import { useRootStyles } from "App.styles";
-import { IHall } from "api/types";
 import { setHallToEdit } from "redux/hall/actions";
+import { deleteHallStart } from "redux/halls/actions";
+import List from "components/List/List";
 
 const HallsList = ({
   fetchHallsStart,
   setHallToEdit,
+  deleteHallStart,
   halls,
   isDataLoaded,
 }: IHallsListProps) => {
@@ -32,48 +21,16 @@ const HallsList = ({
     }
   }, [fetchHallsStart, isDataLoaded]);
 
-  const history = useHistory();
-  const handleEditClick = (hall?: IHall, id?: string) => {
-    const defaultHallValues: IHall = { id: "", name: "", seatArrangement: {} };
-    hall ? setHallToEdit(hall) : setHallToEdit(defaultHallValues);
-    id ? history.push(`/edit-hall/${id}`) : history.push(`/edit-hall/`);
-  };
-
-  const rootClasses = useRootStyles();
-
   return (
-    <>
-      <Button
-        className={rootClasses.crudButton}
-        variant="contained"
-        color="primary"
-        startIcon={<Add />}
-        onClick={() => handleEditClick()}
-      >
-        Add
-      </Button>
-      <TableContainer component={Paper}>
-        <Table aria-label="Halls list">
-          <TableHead>
-            <TableRow>
-              <TableCell>Id</TableCell>
-              <TableCell>Name</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {halls.map((hall) => (
-              <TableRow
-                key={hall.id}
-                onClick={() => handleEditClick(hall, hall.id)}
-              >
-                <TableCell>{hall.id}</TableCell>
-                <TableCell>{hall.name}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+    <List
+      collectionName="halls"
+      collectionTitle="Halls"
+      fieldsToDisplay={["id", "name"]}
+      itemName="hall"
+      items={halls}
+      onRefresh={fetchHallsStart}
+      onDeleteItem={deleteHallStart}
+    />
   );
 };
 
@@ -85,6 +42,7 @@ const mapStateToProps = (state: IRootState) => ({
 const mapDispatchToProps = {
   fetchHallsStart,
   setHallToEdit,
+  deleteHallStart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HallsList);
