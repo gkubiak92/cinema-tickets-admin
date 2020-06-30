@@ -1,11 +1,12 @@
 import { IRootState } from "redux/types";
 import { createSelector } from "reselect";
+import { getSortedKeyValuePairs } from "redux/utils";
 
 const selectHall = (state: IRootState) => state.hall;
 
 export const selectSeatsToEdit = createSelector(
   selectHall,
-  ({ seatArrangement }) => seatArrangement
+  ({ seatArrangement }) => getSortedKeyValuePairs(seatArrangement)
 );
 
 export const selectHallToEditData = createSelector(
