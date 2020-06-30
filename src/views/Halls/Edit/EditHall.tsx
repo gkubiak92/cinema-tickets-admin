@@ -9,6 +9,7 @@ import { IEditHallProps } from "./types";
 import { IHall } from "api/types";
 import { Button, Grid } from "@material-ui/core";
 import { selectIsHallDataSet } from "redux/hall/selectors";
+import Legend from "components/SeatArrangement/Legend";
 
 const EditHall = ({ hall, isHallDataSet, addHallStart }: IEditHallProps) => {
   const { id } = useParams();
@@ -35,6 +36,7 @@ const EditHall = ({ hall, isHallDataSet, addHallStart }: IEditHallProps) => {
   return (
     <Grid container>
       <EditHallForm />
+      <Legend />
       <SeatArrangement hallId={id} edit />
       {saveButton}
     </Grid>
