@@ -1,60 +1,44 @@
 import React, { useEffect } from "react";
 import SeatArrangement from "components/SeatArrangement/SeatArrangement";
-import { useParams } from "react-router-dom";
+import { useParams, RouteComponentProps } from "react-router-dom";
 import EditHallForm from "./Form";
 import { setHallToEdit } from "redux/hall/actions";
-import { addHallStart } from "redux/halls/actions";
 import { connect } from "react-redux";
 import { IRootState } from "redux/types";
-import { IEditHallProps } from "./types";
+import { IEditHallProps, IEdtiHallRouteProps } from "./types";
 import { IHall } from "api/types";
-import { Button, Grid } from "@material-ui/core";
-import { selectIsHallDataSet } from "redux/hall/selectors";
+import { Grid } from "@material-ui/core";
 import Legend from "components/SeatArrangement/Legend";
+import { selectHall } from "redux/halls/selectors";
 
-const EditHall = ({
-  hall,
-  isHallDataSet,
-  addHallStart,
-  setHallToEdit,
-}: IEditHallProps) => {
+const EditHall = ({ hall, setHallToEdit }: IEditHallProps) => {
   const { id } = useParams();
 
   useEffect(() => {
-    setHallToEdit(hall);
+    const defaultHallData: IHall = { id: "", name: "", seatArrangement: {} };
+    hall ? setHallToEdit(hall) : setHallToEdit(defaultHallData);
+    return () => {
+      setHallToEdit(defaultHallData);
+    };
   }, []);
-
-  const handleSubmit = (hall: IHall) => {
-    addHallStart(hall);
-  };
-
-  const saveButton = isHallDataSet && (
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={() => handleSubmit(hall)}
-    >
-      Save
-    </Button>
-  );
 
   return (
     <Grid container>
       <EditHallForm />
       <Legend />
       <SeatArrangement hallId={id} edit />
-      {saveButton}
     </Grid>
   );
 };
 
-const mapStateToProps = (state: IRootState) => ({
-  hall: state.hall,
-  isHallDataSet: selectIsHallDataSet(state),
+const mapStateToProps = (
+  state: IRootState,
+  ownProps: RouteComponentProps<IEdtiHallRouteProps>
+) => ({
+  hall: selectHall(ownProps.match.params.id)(state),
 });
 
 const mapDispatchToProps = {
-  addHallStart,
   setHallToEdit,
 };
 

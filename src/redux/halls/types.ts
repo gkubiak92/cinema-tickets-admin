@@ -28,7 +28,6 @@ export interface IFetchHallsFailureAction {
 
 export interface IAddHallStartAction {
   type: HallsActionsNames.ADD_HALL_START;
-  payload: IHall;
 }
 
 export interface IAddHallSuccessAction {

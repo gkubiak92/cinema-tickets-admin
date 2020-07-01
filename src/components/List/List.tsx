@@ -74,7 +74,7 @@ const List = ({
           <TableHead>
             <TableRow>
               {fieldsToDisplay.map((field) => (
-                <TableCell>{field}</TableCell>
+                <TableCell key={field}>{field}</TableCell>
               ))}
               <TableCell></TableCell>
             </TableRow>
@@ -83,7 +83,10 @@ const List = ({
             {items.map((item) => (
               <TableRow key={item.id}>
                 {fieldsToDisplay.map((field) => (
-                  <TableCell onClick={() => handleRowClick(item.id)}>
+                  <TableCell
+                    key={`${item.id}${field}`}
+                    onClick={() => handleRowClick(item.id)}
+                  >
                     {item[field]}
                   </TableCell>
                 ))}

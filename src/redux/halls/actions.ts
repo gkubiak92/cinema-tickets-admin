@@ -28,9 +28,8 @@ export const fetchHallsFailure = (error: string): IFetchHallsFailureAction => ({
   payload: error,
 });
 
-export const addHallStart = (hall: IHall): IAddHallStartAction => ({
+export const addHallStart = (): IAddHallStartAction => ({
   type: HallsActionsNames.ADD_HALL_START,
-  payload: hall,
 });
 
 export const addHallSuccess = (hall: IHall): IAddHallSuccessAction => ({

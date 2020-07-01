@@ -1,6 +1,5 @@
 import { IHall } from "api/types";
 import { setHallToEdit } from "redux/hall/actions";
-import { addHallStart } from "redux/halls/actions";
 
 export interface IEditHallFormData {
   id: string;
@@ -10,13 +9,15 @@ export interface IEditHallFormData {
 }
 
 export interface IEditHallMappedState {
-  hall: IHall;
-  isHallDataSet: boolean;
+  hall: IHall | undefined;
 }
 
 export interface IEditHallMappedDispatch {
-  addHallStart: typeof addHallStart;
   setHallToEdit: typeof setHallToEdit;
+}
+
+export interface IEdtiHallRouteProps {
+  id: string;
 }
 
 export type IEditHallProps = IEditHallMappedState & IEditHallMappedDispatch;

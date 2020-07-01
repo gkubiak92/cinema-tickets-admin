@@ -1,5 +1,5 @@
 import { IHallsState, HallsActionTypes, HallsActionsNames } from "./types";
-import { addItemToList, deleteItemFromList } from "redux/utils";
+import { deleteItemFromList } from "redux/utils";
 
 const INITIAL_STATE: IHallsState = {
   halls: [],
@@ -32,7 +32,7 @@ const hallsReducer = (state = INITIAL_STATE, action: HallsActionTypes) => {
       return {
         ...state,
         error: "",
-        halls: addItemToList(state.halls, action.payload),
+        //halls: addItemToList(state.halls, action.payload),
       };
     case HallsActionsNames.DELETE_HALL_SUCCESS:
       return {

@@ -1,9 +1,5 @@
-import { takeLatest, put, all, call } from "redux-saga/effects";
-import {
-  HallsActionsNames,
-  IAddHallStartAction,
-  IDeleteHallStartAction,
-} from "./types";
+import { takeLatest, put, all, call, select } from "redux-saga/effects";
+import { HallsActionsNames, IDeleteHallStartAction } from "./types";
 import {
   firestore,
   convertFirestoreCollectionToArray,
@@ -16,7 +12,8 @@ import {
   deleteHallFailure,
   deleteHallSuccess,
 } from "./actions";
-import { FirestoreCollections } from "api/types";
+import { FirestoreCollections, IHall } from "api/types";
+import { selectHall } from "redux/hall/selectors";
 
 function* fetchHallsStart() {
   yield takeLatest(HallsActionsNames.FETCH_HALLS_START, fetchHallsAsync);
@@ -39,13 +36,14 @@ function* addHallStart() {
   yield takeLatest(HallsActionsNames.ADD_HALL_START, addHallAsync);
 }
 
-function* addHallAsync({ payload }: IAddHallStartAction) {
+function* addHallAsync() {
   try {
-    const hallRef = payload.id
-      ? firestore.collection(FirestoreCollections.halls).doc(payload.id)
+    const hallData: IHall = yield select(selectHall);
+    const hallRef = hallData.id
+      ? firestore.collection(FirestoreCollections.halls).doc(hallData.id)
       : firestore.collection(FirestoreCollections.halls).doc();
-    yield hallRef.set({ ...payload });
-    yield put(addHallSuccess({ ...payload, id: hallRef.id }));
+    yield hallRef.set({ ...hallData });
+    yield put(addHallSuccess({ ...hallData, id: hallRef.id }));
   } catch (error) {
     yield put(addHallFailure(error));
   }

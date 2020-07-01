@@ -7,14 +7,34 @@ import { connect } from "react-redux";
 import { IEditHallFormProps } from "./types";
 import { useRootStyles } from "App.styles";
 import { IRootState } from "redux/types";
-import { selectHallToEditData } from "redux/hall/selectors";
+import {
+  selectHallToEditData,
+  selectIsHallDataSet,
+} from "redux/hall/selectors";
 import { setHallData } from "redux/hall/actions";
+import { addHallStart } from "redux/halls/actions";
 
-const EditHallForm = ({ setHallSeats, editHallData }: IEditHallFormProps) => {
+const EditHallForm = ({
+  setHallData,
+  addHallStart,
+  editHallData,
+  isHallDataSet,
+}: IEditHallFormProps) => {
   const rootClasses = useRootStyles();
   const onSubmit = (values: IEditHallFormData) => {
-    setHallSeats(values);
+    setHallData(values);
   };
+
+  const saveButton = isHallDataSet && (
+    <Button
+      type="button"
+      variant="contained"
+      color="primary"
+      onClick={() => addHallStart()}
+    >
+      Save
+    </Button>
+  );
 
   return (
     <Form
@@ -46,6 +66,7 @@ const EditHallForm = ({ setHallSeats, editHallData }: IEditHallFormProps) => {
           >
             Set seats
           </Button>
+          {saveButton}
         </form>
       )}
     />
@@ -54,10 +75,12 @@ const EditHallForm = ({ setHallSeats, editHallData }: IEditHallFormProps) => {
 
 const mapStateToProps = (state: IRootState) => ({
   editHallData: selectHallToEditData(state),
+  isHallDataSet: selectIsHallDataSet(state),
 });
 
 const mapDispatchToProps = {
-  setHallSeats: setHallData,
+  setHallData,
+  addHallStart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditHallForm);
