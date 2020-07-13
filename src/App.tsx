@@ -4,7 +4,6 @@ import Menu from "components/Menu";
 import AppHeader from "components/AppHeader";
 import { useRootStyles, theme } from "App.styles";
 import ContentContainer from "components/ContentContainer";
-import Toolbar from "@material-ui/core/Toolbar";
 import { ThemeProvider } from "@material-ui/core";
 import { fetchMoviesStart } from "redux/movies/actions";
 import { fetchHallsStart } from "redux/halls/actions";
