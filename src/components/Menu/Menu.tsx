@@ -15,6 +15,7 @@ const Menu = () => {
   const classes = useStyles();
   return (
     <div className={classes.drawerContainer}>
+      <Toolbar />
       <Drawer
         variant="permanent"
         className={classes.drawer}

@@ -8,11 +8,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { ThemeProvider } from "@material-ui/core";
 import { fetchMoviesStart } from "redux/movies/actions";
 import { fetchHallsStart } from "redux/halls/actions";
-import { IAppMappedDispatch } from "types";
+import { IAppProps } from "types";
 import { connect } from "react-redux";
 import Routes from "router/Routes";
+import { selectIsAuthenticated } from "redux/auth/selectors";
+import { IRootState } from "redux/types";
 
-function App({ fetchMoviesStart, fetchHallsStart }: IAppMappedDispatch) {
+function App({
+  isAuthenticated,
+  fetchMoviesStart,
+  fetchHallsStart,
+}: IAppProps) {
   useEffect(() => {
     fetchMoviesStart();
     fetchHallsStart();
@@ -22,8 +28,7 @@ function App({ fetchMoviesStart, fetchHallsStart }: IAppMappedDispatch) {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <AppHeader />
-        <Menu />
-        <Toolbar />
+        {isAuthenticated && <Menu />}
         <ContentContainer>
           <Routes />
         </ContentContainer>
@@ -32,9 +37,13 @@ function App({ fetchMoviesStart, fetchHallsStart }: IAppMappedDispatch) {
   );
 }
 
+const mapStateToProps = (state: IRootState) => ({
+  isAuthenticated: selectIsAuthenticated(state),
+});
+
 const mapDispatchToProps = {
   fetchMoviesStart,
   fetchHallsStart,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -8,20 +8,25 @@ import EditHall from "views/Halls/Edit";
 import ScreeningList from "views/Screenings/List";
 import EditScreening from "views/Screenings/Edit";
 import LoginPage from "views/Login/LoginPage";
+import AuthRequiredRoute from "./AuthRequiredRoute";
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={LoginPage} />
-    <Route exact path="/" component={Dashboard} />
-    <Route exact path="/movies" component={MoviesList} />
-    <Route exact path="/edit-movie" component={EditMovie} />
-    <Route exact path="/edit-movie/:id" component={EditMovie} />
-    <Route exact path="/halls" component={HallsList} />
-    <Route exact path="/edit-hall" component={EditHall} />
-    <Route exact path="/edit-hall/:id" component={EditHall} />
-    <Route exact path="/screenings" component={ScreeningList} />
-    <Route exact path="/edit-screening" component={EditScreening} />
-    <Route exact path="/edit-screening/:id" component={EditScreening} />
+    <Route exact path="/login" component={LoginPage} />
+    <AuthRequiredRoute exact path="/" component={Dashboard} />
+    <AuthRequiredRoute exact path="/movies" component={MoviesList} />
+    <AuthRequiredRoute exact path="/edit-movie" component={EditMovie} />
+    <AuthRequiredRoute exact path="/edit-movie/:id" component={EditMovie} />
+    <AuthRequiredRoute exact path="/halls" component={HallsList} />
+    <AuthRequiredRoute exact path="/edit-hall" component={EditHall} />
+    <AuthRequiredRoute exact path="/edit-hall/:id" component={EditHall} />
+    <AuthRequiredRoute exact path="/screenings" component={ScreeningList} />
+    <AuthRequiredRoute exact path="/edit-screening" component={EditScreening} />
+    <AuthRequiredRoute
+      exact
+      path="/edit-screening/:id"
+      component={EditScreening}
+    />
   </Switch>
 );
 

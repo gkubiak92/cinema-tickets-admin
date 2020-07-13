@@ -1,5 +1,5 @@
-import { loginStartAction } from "redux/auth/actions";
+type MappedProps = {
+  isAuthenticated: boolean;
+};
 
-export interface IMappedDispatch {
-  loginStartAction: typeof loginStartAction;
-}
+export type Props = MappedProps;

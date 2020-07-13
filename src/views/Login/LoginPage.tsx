@@ -1,39 +1,33 @@
 import React from "react";
-import { ILoginData } from "redux/auth/types";
-import { loginStartAction } from "redux/auth/actions";
+import LoginForm from "./LoginForm/LoginForm";
+import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { IMappedDispatch } from "./types";
-import { Form, Field } from "react-final-form";
-import { TextField } from "mui-rff";
-import { Button } from "@material-ui/core";
+import { Props } from "./types";
+import { Redirect } from "react-router-dom";
+import { selectIsAuthenticated } from "redux/auth/selectors";
+import { IRootState } from "redux/types";
 
-const initialValues: ILoginData = {
-  email: "",
-  password: "",
-};
-
-const LoginPage = ({ loginStartAction }: IMappedDispatch) => {
-  const onSubmit = (values: ILoginData) => {
-    loginStartAction(values);
-  };
-
-  return (
-    <Form
-      onSubmit={onSubmit}
-      initialValues={initialValues}
-      render={({ handleSubmit, submitting, values }) => (
-        <form onSubmit={handleSubmit}>
-          <TextField name="email" />
-          <TextField name="password" />
-          <Button type="submit">Login</Button>
-        </form>
-      )}
-    />
+const LoginPage = ({ isAuthenticated }: Props) => {
+  return isAuthenticated ? (
+    <Redirect to="/" />
+  ) : (
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Grid item xs={3}>
+        <LoginForm />
+      </Grid>
+    </Grid>
   );
 };
 
-const mapDispatchToProps = {
-  loginStartAction,
-};
+const mapStateToProps = (state: IRootState) => ({
+  isAuthenticated: selectIsAuthenticated(state),
+});
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps)(LoginPage);
