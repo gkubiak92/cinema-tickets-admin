@@ -13,6 +13,7 @@ const initialScreeningData: IScreening = {
   hallId: "",
   id: "",
   movieId: "",
+  bookedSeats: [],
 };
 
 const EditScreening = ({

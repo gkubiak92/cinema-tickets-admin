@@ -7,9 +7,11 @@ import HallsList from "views/Halls/List";
 import EditHall from "views/Halls/Edit";
 import ScreeningList from "views/Screenings/List";
 import EditScreening from "views/Screenings/Edit";
+import LoginPage from "views/Login/LoginPage";
 
 const Routes = () => (
   <Switch>
+    <Route exact path="/" component={LoginPage} />
     <Route exact path="/" component={Dashboard} />
     <Route exact path="/movies" component={MoviesList} />
     <Route exact path="/edit-movie" component={EditMovie} />

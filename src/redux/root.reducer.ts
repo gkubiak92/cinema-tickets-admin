@@ -5,12 +5,14 @@ import moviesReducer from "./movies/reducer";
 import hallsReducer from "./halls/reducer";
 import screeningsReducer from "./screenings/reducer";
 import hallReducer from "./hall/reducer";
+import authReducer from "./auth/reducer";
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
   halls: hallsReducer,
   screenings: screeningsReducer,
   hall: hallReducer,
+  auth: authReducer,
 });
 
 const persistConfig = {

@@ -53,7 +53,13 @@ function* addScreeningAsync({ payload }: IAddScreeningStartAction) {
       ? firestore.collection(FirestoreCollections.screenings).doc(payload.id)
       : firestore.collection(FirestoreCollections.screenings).doc();
     yield newScreeningDocRef.set({ ...payload });
-    yield put(addScreeningSuccess({ ...payload, id: newScreeningDocRef.id }));
+    yield put(
+      addScreeningSuccess({
+        ...payload,
+        id: newScreeningDocRef.id,
+        bookedSeats: [],
+      })
+    );
   } catch (error) {
     yield put(addScreeningFailure(error));
   }
