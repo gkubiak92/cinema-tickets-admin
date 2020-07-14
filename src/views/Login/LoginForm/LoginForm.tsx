@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-final-form";
 import { ILoginData } from "redux/auth/types";
-import { loginStartAction } from "redux/auth/actions";
+import { loginStart } from "redux/auth/actions";
 import { TextField } from "mui-rff";
 import { Button, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -12,9 +12,9 @@ const initialValues: ILoginData = {
   password: "",
 };
 
-const LoginForm = ({ loginStartAction }: IMappedDispatch) => {
+const LoginForm = ({ loginStart }: IMappedDispatch) => {
   const onSubmit = (values: ILoginData) => {
-    loginStartAction(values);
+    loginStart(values);
   };
   return (
     <Form
@@ -52,7 +52,7 @@ const LoginForm = ({ loginStartAction }: IMappedDispatch) => {
 };
 
 const mapDispatchToProps = {
-  loginStartAction,
+  loginStart,
 };
 
 export default connect(null, mapDispatchToProps)(LoginForm);

@@ -1,5 +1,5 @@
 import { put, all, call, takeEvery } from "redux-saga/effects";
-import { startSpinningAction, stopSpinningAction } from "./actions";
+import { startSpinning, stopSpinning } from "./actions";
 import { AuthActionNames } from "redux/auth/types";
 import { HallsActionsNames } from "redux/halls/types";
 import { MoviesActionNames } from "redux/movies/types";
@@ -19,12 +19,12 @@ function* onSpinningStart() {
       ScreeningsActionNames.DELETE_SCREENING_START,
       ScreeningsActionNames.FETCH_SCREENINGS_START,
     ],
-    startSpinning
+    startSpinningAsync
   );
 }
 
-function* startSpinning() {
-  yield put(startSpinningAction());
+function* startSpinningAsync() {
+  yield put(startSpinning());
 }
 
 function* onSpinningStop() {
@@ -51,12 +51,12 @@ function* onSpinningStop() {
       ScreeningsActionNames.FETCH_SCREENINGS_SUCCESS,
       ScreeningsActionNames.FETCH_SCREENINGS_FAILURE,
     ],
-    stopSpinning
+    stopSpinningAsync
   );
 }
 
-function* stopSpinning() {
-  yield put(stopSpinningAction());
+function* stopSpinningAsync() {
+  yield put(stopSpinning());
 }
 
 export function* uiSagas() {

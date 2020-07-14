@@ -4,10 +4,10 @@ import {
   IStopSpinningAction,
 } from "./types";
 
-export const startSpinningAction = (): IStartSpinningAction => ({
+export const startSpinning = (): IStartSpinningAction => ({
   type: UIActionNames.START_SPINNING,
 });
 
-export const stopSpinningAction = (): IStopSpinningAction => ({
+export const stopSpinning = (): IStopSpinningAction => ({
   type: UIActionNames.STOP_SPINNING,
 });

@@ -1,10 +1,10 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import { AuthActionNames, ILoginStartAction } from "./types";
 import {
-  loginFailureAction,
-  loginSuccessAction,
-  logoutFailureAction,
-  logoutSuccessAction,
+  loginFailure,
+  loginSuccess,
+  logoutFailure,
+  logoutSuccess,
 } from "./actions";
 import { auth } from "firebase/firebase.utils";
 
@@ -16,9 +16,9 @@ function* loginStartAsync({ payload }: ILoginStartAction) {
   try {
     const { email, password } = payload;
     const response = yield auth.signInWithEmailAndPassword(email, password);
-    yield put(loginSuccessAction(response.user));
+    yield put(loginSuccess(response.user));
   } catch (error) {
-    yield put(loginFailureAction(error));
+    yield put(loginFailure(error));
   }
 }
 
@@ -29,9 +29,9 @@ function* logoutStart() {
 function* logoutAsync() {
   try {
     // maybe do some stuff in future
-    yield put(logoutSuccessAction());
+    yield put(logoutSuccess());
   } catch (error) {
-    yield put(logoutFailureAction(error));
+    yield put(logoutFailure(error));
   }
 }
 

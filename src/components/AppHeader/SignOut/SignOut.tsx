@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { logoutStartAction } from "redux/auth/actions";
+import { logoutStart } from "redux/auth/actions";
 import { connect } from "react-redux";
 import { Props } from "./types";
 
-const SignOut = ({ logoutStartAction }: Props) => (
+const SignOut = ({ logoutStart }: Props) => (
   <Button
     onClick={() => {
-      logoutStartAction();
+      logoutStart();
     }}
   >
     Sign Out
@@ -15,7 +15,7 @@ const SignOut = ({ logoutStartAction }: Props) => (
 );
 
 const mapDispatchToProps = {
-  logoutStartAction,
+  logoutStart,
 };
 
 export default connect(null, mapDispatchToProps)(SignOut);

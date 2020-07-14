@@ -1,7 +1,7 @@
-import { logoutStartAction } from "redux/auth/actions";
+import { logoutStart } from "redux/auth/actions";
 
 type MappedActions = {
-  logoutStartAction: typeof logoutStartAction;
+  logoutStart: typeof logoutStart;
 };
 
 export type Props = MappedActions;

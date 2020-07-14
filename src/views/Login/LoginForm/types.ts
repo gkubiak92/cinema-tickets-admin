@@ -1,5 +1,5 @@
-import { loginStartAction } from "redux/auth/actions";
+import { loginStart } from "redux/auth/actions";
 
 export interface IMappedDispatch {
-  loginStartAction: typeof loginStartAction;
+  loginStart: typeof loginStart;
 }
