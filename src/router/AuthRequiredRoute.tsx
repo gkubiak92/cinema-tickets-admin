@@ -11,6 +11,7 @@ type MappedState = {
 type Props = MappedState & RouteProps;
 
 const AuthRequiredRoute = ({ isAuthenticated, component, path }: Props) => {
+  console.log("isauth:", isAuthenticated);
   if (!isAuthenticated) {
     return <Redirect to="/login" />;
   }

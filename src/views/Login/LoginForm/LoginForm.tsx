@@ -23,7 +23,7 @@ const LoginForm = ({ loginStartAction }: IMappedDispatch) => {
       render={({ handleSubmit, submitting, values }) => (
         <form onSubmit={handleSubmit}>
           <TextField name="email" />
-          <TextField name="password" />
+          <TextField type="password" name="password" />
           <Button type="submit">Login</Button>
         </form>
       )}

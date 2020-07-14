@@ -17,7 +17,7 @@ const LoginPage = ({ isAuthenticated }: Props) => {
       direction="column"
       alignItems="center"
       justify="center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "calc(100vh - 104px)" }}
     >
       <Grid item xs={3}>
         <LoginForm />

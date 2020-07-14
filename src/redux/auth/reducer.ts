@@ -27,10 +27,10 @@ const authReducer = (state = INITIAL_STATE, action: AuthActionTypes) => {
         isFetching: false,
         error: action.payload,
       };
-    case AuthActionNames.LOGOUT_SUCCESS:
+    case AuthActionNames.LOGOUT_START:
       return {
         ...state,
-        user: {},
+        user: null,
         error: "",
       };
     default:
