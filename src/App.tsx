@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Menu from "components/Menu";
 import AppHeader from "components/AppHeader";
 import { useRootStyles, theme } from "App.styles";
 import ContentContainer from "components/ContentContainer";
 import { ThemeProvider } from "@material-ui/core";
-import { fetchMoviesStart } from "redux/movies/actions";
-import { fetchHallsStart } from "redux/halls/actions";
 import { IAppProps } from "types";
 import { connect } from "react-redux";
 import Routes from "router/Routes";
@@ -15,16 +13,7 @@ import { IRootState } from "redux/types";
 import GlobalSpinner from "components/GlobalSpinner/GlobalSpinner";
 import { selectIsSpinning } from "redux/ui/selectors";
 
-function App({
-  isSpinning,
-  isAuthenticated,
-  fetchMoviesStart,
-  fetchHallsStart,
-}: IAppProps) {
-  useEffect(() => {
-    fetchMoviesStart();
-    fetchHallsStart();
-  }, [fetchMoviesStart, fetchHallsStart]);
+function App({ isSpinning, isAuthenticated }: IAppProps) {
   const classes = useRootStyles();
   return (
     <ThemeProvider theme={theme}>
@@ -45,9 +34,4 @@ const mapStateToProps = (state: IRootState) => ({
   isSpinning: selectIsSpinning(state),
 });
 
-const mapDispatchToProps = {
-  fetchMoviesStart,
-  fetchHallsStart,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
