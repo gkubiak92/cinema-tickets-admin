@@ -3,6 +3,7 @@ import { moviesSagas } from "./movies/sagas";
 import { hallsSagas } from "./halls/sagas";
 import { screeningsSagas } from "./screenings/sagas";
 import { authSagas } from "./auth/sagas";
+import { uiSagas } from "./ui/sagas";
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     call(hallsSagas),
     call(screeningsSagas),
     call(authSagas),
+    call(uiSagas),
   ]);
 }

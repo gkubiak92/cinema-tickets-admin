@@ -28,9 +28,9 @@ export const useRootStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  drawerContainer: {
-    overflow: "auto",
-  },
+  // drawerContainer: {
+  //   overflow: "auto",
+  // },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),

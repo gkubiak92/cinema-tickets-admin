@@ -6,6 +6,7 @@ import hallsReducer from "./halls/reducer";
 import screeningsReducer from "./screenings/reducer";
 import hallReducer from "./hall/reducer";
 import authReducer from "./auth/reducer";
+import uiReducer from "./ui/reducer";
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   screenings: screeningsReducer,
   hall: hallReducer,
   auth: authReducer,
+  ui: uiReducer,
 });
 
 const persistConfig = {

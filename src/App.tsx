@@ -12,8 +12,11 @@ import { connect } from "react-redux";
 import Routes from "router/Routes";
 import { selectIsAuthenticated } from "redux/auth/selectors";
 import { IRootState } from "redux/types";
+import GlobalSpinner from "components/GlobalSpinner/GlobalSpinner";
+import { selectIsSpinning } from "redux/ui/selectors";
 
 function App({
+  isSpinning,
   isAuthenticated,
   fetchMoviesStart,
   fetchHallsStart,
@@ -28,6 +31,7 @@ function App({
       <div className={classes.root}>
         <AppHeader />
         {isAuthenticated && <Menu />}
+        {isSpinning && <GlobalSpinner />}
         <ContentContainer>
           <Routes />
         </ContentContainer>
@@ -38,6 +42,7 @@ function App({
 
 const mapStateToProps = (state: IRootState) => ({
   isAuthenticated: selectIsAuthenticated(state),
+  isSpinning: selectIsSpinning(state),
 });
 
 const mapDispatchToProps = {

@@ -1,13 +1,16 @@
 import React from "react";
 import LoginForm from "./LoginForm/LoginForm";
-import { Grid } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import { connect } from "react-redux";
 import { Props } from "./types";
 import { Redirect } from "react-router-dom";
 import { selectIsAuthenticated } from "redux/auth/selectors";
 import { IRootState } from "redux/types";
+import { useStyles } from "./styles";
 
 const LoginPage = ({ isAuthenticated }: Props) => {
+  const styles = useStyles();
+
   return isAuthenticated ? (
     <Redirect to="/" />
   ) : (
@@ -19,9 +22,11 @@ const LoginPage = ({ isAuthenticated }: Props) => {
       justify="center"
       style={{ minHeight: "calc(100vh - 104px)" }}
     >
-      <Grid item xs={3}>
-        <LoginForm />
-      </Grid>
+      <Paper className={styles.loginForm}>
+        <Grid>
+          <LoginForm />
+        </Grid>
+      </Paper>
     </Grid>
   );
 };

@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const Menu = () => {
   const classes = useStyles();
   return (
-    <div className={classes.drawerContainer}>
+    <div>
       <Toolbar />
       <Drawer
         variant="permanent"

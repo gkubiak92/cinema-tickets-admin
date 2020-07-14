@@ -3,6 +3,7 @@ import { fetchHallsStart } from "redux/halls/actions";
 
 export interface IAppMappedState {
   isAuthenticated: boolean;
+  isSpinning: boolean;
 }
 
 export interface IAppMappedDispatch {
