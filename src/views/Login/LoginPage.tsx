@@ -1,6 +1,6 @@
 import React from "react";
 import LoginForm from "./LoginForm/LoginForm";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import { Props } from "./types";
 import { Redirect } from "react-router-dom";
@@ -23,8 +23,15 @@ const LoginPage = ({ isAuthenticated }: Props) => {
       style={{ minHeight: "calc(100vh - 104px)" }}
     >
       <Paper className={styles.loginForm}>
-        <Grid>
-          <LoginForm />
+        <Grid container justify="center">
+          <Grid item xs={12}>
+            <Typography variant="h6" align="center">
+              CINEMA TICKETS ADMIN
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <LoginForm />
+          </Grid>
         </Grid>
       </Paper>
     </Grid>
