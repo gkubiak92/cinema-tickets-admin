@@ -12,6 +12,7 @@ import { selectIsAuthenticated } from "redux/auth/selectors";
 import { IRootState } from "redux/types";
 import GlobalSpinner from "components/GlobalSpinner/GlobalSpinner";
 import { selectIsSpinning } from "redux/ui/selectors";
+import GlobalAlert from "components/GlobalAlert/GlobalAlert";
 
 function App({ isSpinning, isAuthenticated }: IAppProps) {
   const classes = useRootStyles();
@@ -21,6 +22,7 @@ function App({ isSpinning, isAuthenticated }: IAppProps) {
         <AppHeader />
         {isAuthenticated && <Menu />}
         {isSpinning && <GlobalSpinner />}
+        <GlobalAlert />
         <ContentContainer>
           <Routes />
         </ContentContainer>

@@ -4,6 +4,7 @@ import { IScreeningsState } from "./screenings/types";
 import { IHallState } from "./hall/types";
 import { IAuthState } from "./auth/types";
 import { IUIState } from "./ui/types";
+import { IErrorResponse } from "api/types";
 
 export interface IRootState {
   movies: IMoviesState;
@@ -12,4 +13,9 @@ export interface IRootState {
   hall: IHallState;
   auth: IAuthState;
   ui: IUIState;
+}
+
+export interface IFailureAction {
+  type: string;
+  payload: IErrorResponse;
 }

@@ -52,3 +52,9 @@ export interface IScreening {
   movieId: string;
   bookedSeats: string[];
 }
+
+export interface IErrorResponse {
+  a: any;
+  code: string;
+  message: string;
+}
