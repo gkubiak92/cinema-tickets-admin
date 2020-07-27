@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "views/Dashboard";
+import Dashboard from "views/Dashboard/Dashboard";
 import MoviesList from "views/Movies/List";
 import EditMovie from "views/Movies/Edit";
 import HallsList from "views/Halls/List";
