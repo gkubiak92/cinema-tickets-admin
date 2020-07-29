@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { selectMessage } from "redux/movies/selectors";
 import { IRootState } from "redux/types";
 import formFields from "./FormFields";
+import arrayMutators from 'final-form-arrays'
 
 const EditMovieForm = ({
   movie,
@@ -24,6 +25,7 @@ const EditMovieForm = ({
   return (
     <>
       <Form
+        mutators={{ ...arrayMutators }}
         initialValues={{ ...movie }}
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => (

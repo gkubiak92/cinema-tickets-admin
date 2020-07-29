@@ -31,9 +31,7 @@ const hallReducer = (state = INITIAL_STATE, action: HallActionsTypes) => {
       };
 
     default:
-      return {
-        ...state,
-      };
+      return state
   }
 };
 

@@ -1,5 +1,5 @@
 import { IMoviesState, MoviesActionTypes, MoviesActionNames } from "./types";
-import { deleteItemFromList, addItemToList } from "redux/utils";
+import { deleteItemFromList } from "redux/utils";
 
 const INITIAL_STATE: IMoviesState = {
   movies: [],
@@ -25,7 +25,6 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
     case MoviesActionNames.ADD_MOVIE_SUCCESS:
       return {
         ...state,
-        movies: addItemToList(state.movies, action.payload),
       };
     case MoviesActionNames.ADD_MOVIE_FAILURE:
     case MoviesActionNames.FETCH_MOVIES_FAILURE:
@@ -45,9 +44,7 @@ const moviesReducer = (state = INITIAL_STATE, action: MoviesActionTypes) => {
         error: action.payload,
       };
     default:
-      return {
-        ...state,
-      };
+      return state
   }
 };
 

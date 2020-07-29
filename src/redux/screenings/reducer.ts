@@ -51,9 +51,7 @@ const screeningsReducer = (
       };
 
     default:
-      return {
-        ...state,
-      };
+      return state
   }
 };
 

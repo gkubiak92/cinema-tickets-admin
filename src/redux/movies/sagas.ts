@@ -45,7 +45,8 @@ function* addMovieAsync({ payload }: IAddMovieStartAction) {
       ? firestore.collection(FirestoreCollections.movies).doc(payload.id)
       : firestore.collection(FirestoreCollections.movies).doc();
     yield newMovieRef.set({ ...payload });
-    yield put(addMovieSuccess({ ...payload, id: newMovieRef.id }));
+    yield put(addMovieSuccess());
+
   } catch (error) {
     yield put(addMovieFailure(error));
   }

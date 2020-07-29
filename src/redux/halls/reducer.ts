@@ -40,9 +40,7 @@ const hallsReducer = (state = INITIAL_STATE, action: HallsActionTypes) => {
         halls: deleteItemFromList(state.halls, action.payload),
       };
     default:
-      return {
-        ...state,
-      };
+      return state
   }
 };
 

@@ -1,8 +1,10 @@
 import React from "react";
 import { TextField, Autocomplete, SelectData, AutocompleteData } from "mui-rff";
+import { FieldArray } from 'react-final-form-arrays'
 import { IEditMovieFormFields } from "./types";
 import { Field } from "react-final-form";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, IconButton, Grid, Button } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 
 const genres: SelectData[] = [
   { label: "Action", value: "action" },
@@ -96,4 +98,32 @@ export default [
     size: 12,
     field: <TextField name="thumbnailUrl" label="thumbnailUrl" fullWidth />,
   },
+  {
+    size: 12,
+    field:
+      <FieldArray name="photosUrl">
+        {({ fields }) => (
+          <div>
+            {fields.map((name, index) =>
+              <Grid container spacing={2} key={name}>
+                <Grid item xs={11}>
+                  <TextField name={`photosUrl[${index}]`} label={`photoUrl no. ${index + 1}`} fullWidth />
+                </Grid>
+                <Grid item xs={1}>
+                  <IconButton aria-label="delete" onClick={() => fields.remove(index)}>
+                    <Delete />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            )}
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={() => fields.push('')}>Add photo url</Button>
+          </div>
+        )
+        }
+      </FieldArray>
+  }
 ] as IEditMovieFormFields[];
